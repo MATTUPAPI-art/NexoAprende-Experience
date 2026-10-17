@@ -71,6 +71,16 @@ Remove-Item Env:NEXO_PAGES_URL
 
 Se comprueban recarga de rutas, resolución de todos los recursos, fuentes, tema persistente, selector, arrastre, toque emulado, contador, movimiento reducido, reproducción y pausa de ambos videos, finalización de memoria, resultados y persistencia del historial. Las pruebas móviles son emulación, no una validación en un teléfono físico.
 
+## Verificación realizada el 17 de octubre de 2026
+
+- Build de producción correcto: 22 recursos multimedia y 7 archivos de fuentes locales; ningún archivo privado en el artefacto.
+- 36 pruebas unitarias y 22 E2E de desarrollo aprobadas.
+- 6 E2E del build local bajo `/NexoAprende-Experience/` aprobadas.
+- [Primer despliegue automático](https://github.com/MATTUPAPI-art/NexoAprende-Experience/actions/runs/39076789100) completado, incluyendo todas esas pruebas en el runner Linux.
+- Sitio público con respuesta HTTP 200 y `baseHref` correcto; las mismas 6 E2E de producción aprobadas contra la URL real de GitHub Pages, en escritorio y móvil emulado.
+
+La comprobación de rutas espera el encabezado concreto de cada pantalla antes de recargar. Así valida también la carga diferida de componentes con latencia de red y evita confundir el encabezado anterior con el de la ruta solicitada.
+
 ## Exclusiones
 
 `node_modules`, `.angular`, `dist`, temporales, reportes y evidencias locales permanecen ignorados por Git. El build excluye `public/local` y respaldos; la grabación ajena de CreceActivo sigue fuera de los archivos públicos y del artefacto de Pages. Los originales educativos se conservan y la interfaz prioriza los derivados optimizados.

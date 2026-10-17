@@ -53,24 +53,24 @@ test('production base path, all resources, direct hash routes and night reload',
         if (!image.naturalWidth) throw new Error(path);
       }, asset);
   }
-  for (const route of [
-    '/',
-    '/experiencia',
-    '/panel',
-    '/actividades',
-    '/progreso',
-    '/actividades/memory',
-    '/actividades/attention',
-    '/actividades/reading',
-    '/tutor',
-    '/profesional',
-    '/ayuda',
-    '/no-existe',
+  for (const [route, title] of [
+    ['/', '¡Hola, Alex!'],
+    ['/experiencia', 'Encuentra el lugar donde brillas.'],
+    ['/panel', '¡Seguimos descubriendo, Alex!'],
+    ['/actividades', 'Elige tu próxima aventura.'],
+    ['/progreso', 'Tu camino de descubrimientos.'],
+    ['/actividades/memory', 'Encuentra las parejas'],
+    ['/actividades/attention', 'Encuentra los perros'],
+    ['/actividades/reading', 'Un mundo entre líneas'],
+    ['/tutor', 'Acompañar también es aprender.'],
+    ['/profesional', 'Conectados por el aprendizaje.'],
+    ['/ayuda', 'Estamos para acompañarte.'],
+    ['/no-existe', 'Este rincón aún no está en el mapa.'],
   ]) {
     await page.goto(`./#${route}`);
     const heading = page.locator('main h1');
-    await expect(heading).toBeVisible();
-    const title = await heading.innerText();
+    // A hash change finishes before a lazy route loads over the public network.
+    await expect(heading).toHaveText(title);
     await page.reload();
     await expect(page.locator('main h1')).toHaveText(title);
     await expect(page.locator('.app-shell')).toHaveAttribute('data-theme', 'night');
