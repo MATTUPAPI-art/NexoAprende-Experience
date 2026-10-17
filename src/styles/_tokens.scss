@@ -1,0 +1,24 @@
+$colors: (
+  'primary': #7456ab,
+  'text': #313140,
+  'muted': #656371,
+  'border': #e8e7ed,
+  'background': #f8f9fb,
+  'green': #42745d,
+  'warm': #ac7537,
+);
+$space: (
+  xs: 4px,
+  sm: 8px,
+  md: 16px,
+  lg: 24px,
+  xl: 32px,
+  xxl: 48px,
+);
+$radius: 16px;
+$radius-lg: 22px;
+$shadow: 0 9px 25px #37314b0a;
+$transition: 180ms ease;
+$motion-slow: 8s;
+$breakpoint-mobile: 680px;
+$breakpoint-tablet: 960px;

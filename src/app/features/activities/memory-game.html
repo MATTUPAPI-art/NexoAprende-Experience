@@ -1,0 +1,147 @@
+<a routerLink="/actividades" class="link-back"><nx-icon name="back" />Todas las experiencias</a>
+<nx-page-heading
+  eyebrow="CONECTA Y RECUERDA · MEMORIA"
+  title="Encuentra las parejas"
+  description="A veces, una pequeña imagen guarda un gran descubrimiento."
+/>
+@if (phase() === 'instructions') {
+  <div class="game-intro">
+    <div class="intro-illustration">
+      <nx-illustration scene="memory" /><span class="intro-caption"
+        >Dos imágenes. Una conexión.</span
+      >
+    </div>
+    <section class="panel intro-instructions">
+      <span class="badge">6 parejas · Nivel inicial</span>
+      <h2>¿Listo para conectar?</h2>
+      <p>
+        Hay 12 tarjetas boca abajo y 6 parejas por descubrir. Tu misión es encontrarlas, a tu ritmo.
+      </p>
+      <ol>
+        <li><span>1</span>Da la vuelta a una tarjeta.</li>
+        <li><span>2</span>Elige otra y compara sus imágenes.</li>
+        <li><span>3</span>Si son iguales, ¡encontraste una pareja!</li>
+      </ol>
+      <p class="instruction-note">
+        <nx-icon name="leaf" />Sin límite de tiempo ni presión. Cada intento te ayuda a recordar.
+      </p>
+      <button class="button button-primary" (click)="start()">
+        Comenzar mi aventura<nx-icon name="play" /></button
+      ><small>También puedes jugar con Tab, Enter y la barra espaciadora.</small>
+    </section>
+  </div>
+} @else {
+  <section class="game-panel panel" aria-label="Tablero de memoria">
+    <div class="game-toolbar">
+      <div class="game-stats">
+        <span
+          ><nx-icon name="cards" /><strong>{{ state().matches }}<small> / 6</small></strong
+          ><small>Parejas</small></span
+        ><span
+          ><nx-icon name="reset" /><strong>{{ state().errors }}</strong
+          ><small>Sin pareja</small></span
+        ><span
+          ><nx-icon name="clock" /><strong>{{ clock() }}</strong
+          ><small>Tiempo</small></span
+        >
+      </div>
+      <div class="game-controls">
+        @if (phase() === 'playing') {
+          <button class="button button-secondary" [attr.aria-pressed]="paused()" (click)="pause()">
+            <nx-icon [name]="paused() ? 'play' : 'pause'" />{{ paused() ? 'Continuar' : 'Pausar' }}
+          </button>
+        }
+        <button class="icon-button" aria-label="Reiniciar partida" (click)="start()">
+          <nx-icon name="reset" />
+        </button>
+      </div>
+    </div>
+    @if (paused()) {
+      <div class="paused-message" role="status">
+        <nx-icon name="leaf" /><strong>Un respiro también es parte de la aventura.</strong>
+        <p>Pulsa Continuar cuando quieras volver. El tiempo está en pausa.</p>
+      </div>
+    }
+    <div
+      class="memory-board"
+      [class.board-paused]="paused()"
+      [attr.aria-label]="paused() ? 'Tablero en pausa' : '12 tarjetas de memoria'"
+    >
+      @for (card of state().cards; track card.id; let index = $index) {
+        <button
+          class="memory-tile"
+          [class.is-revealed]="card.matched || state().selected.includes(card.id)"
+          [class.is-matched]="card.matched"
+          [disabled]="card.matched || paused() || phase() === 'complete'"
+          [attr.aria-disabled]="state().locked || card.matched || paused()"
+          [attr.aria-label]="
+            card.matched
+              ? 'Pareja encontrada: ' + card.label
+              : state().selected.includes(card.id)
+                ? card.label + ', tarjeta ' + (index + 1)
+                : 'Tarjeta ' + (index + 1) + ', boca abajo'
+          "
+          (click)="flip(card.id)"
+        >
+          <span class="tile-back" aria-hidden="true"><span>✦</span></span
+          ><span class="tile-front" aria-hidden="true"
+            >{{ card.symbol }}
+            @if (card.matched) {
+              <span class="tile-check"><nx-icon name="check" /></span>
+            }
+          </span>
+        </button>
+      }
+    </div>
+    @if (phase() === 'complete') {
+      <div class="finished-inline">
+        <strong>¡Seis conexiones, una aventura completada!</strong
+        ><button id="play-again" class="button button-primary" (click)="start()">
+          Volver a jugar<nx-icon name="reset" /></button
+        ><a routerLink="/progreso" class="text-link">Ver mi progreso<nx-icon name="arrow" /></a>
+      </div>
+    }
+    <p class="board-caption">
+      <nx-icon name="heart" />No hay prisa. Tu memoria crece con cada intento.
+    </p>
+  </section>
+}
+<p class="sr-only" aria-live="polite" aria-atomic="true">{{ announcement() }}</p>
+<dialog
+  #resultDialog
+  class="results-dialog"
+  aria-labelledby="results-title"
+  (cancel)="closeResults()"
+>
+  <div class="results-inner">
+    <div class="celebration" aria-hidden="true">
+      <span>✦</span><nx-icon name="trophy" /><span>✧</span>
+    </div>
+    <span class="eyebrow">UN NUEVO DESCUBRIMIENTO</span>
+    <h2 id="results-title">¡Lo lograste!</h2>
+    <p>Encontraste todas las parejas.<br />Cada intento fue parte del camino.</p>
+    <div class="result-numbers">
+      <span><strong>6</strong>Parejas</span
+      ><span
+        ><strong>{{ state().errors }}</strong
+        >Sin pareja</span
+      ><span
+        ><strong>{{ clock() }}</strong
+        >Tiempo</span
+      >
+    </div>
+    <p class="saved-note"><nx-icon name="check" />Resultado registrado en este navegador</p>
+    <a routerLink="/progreso" class="button button-primary" autofocus
+      >Ver mi progreso<nx-icon name="arrow" /></a
+    ><button class="button button-secondary" (click)="start()">
+      Jugar otra vez<nx-icon name="reset" /></button
+    ><button class="close-results" (click)="closeResults()">Volver al tablero</button>
+    <p class="result-disclaimer">Una descripción de tu partida, sin valor diagnóstico.</p>
+  </div>
+</dialog>
+<div class="game-educational-note">
+  <nx-message
+    >Los aciertos, intentos y tiempo describen esta partida. No se comparan con otros participantes
+    ni se interpretan como diagnósticos.</nx-message
+  >
+</div>

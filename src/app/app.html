@@ -1,0 +1,120 @@
+<div
+  class="app-shell"
+  [attr.data-stage]="profiles.stage()"
+  [class.motion-off]="!preferences.motion()"
+>
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+  @if (menuOpen()) {
+    <button class="sidebar-scrim" aria-label="Cerrar menú" (click)="menuOpen.set(false)"></button>
+  }
+  <aside
+    class="sidebar"
+    [class.is-open]="menuOpen()"
+    [inert]="mobile() && !menuOpen()"
+    aria-label="Navegación principal"
+  >
+    <a routerLink="/" class="brand" (click)="menuOpen.set(false)"
+      ><span class="brand-symbol">n<span></span></span
+      ><span>Nexo<span class="brand-light">Aprende</span><small>EXPERIENCE</small></span></a
+    >
+    <span class="nav-caption">TU UNIVERSO</span>
+    <nav aria-label="Tu universo">
+      @for (item of mainNav; track item.path) {
+        <a
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+          ariaCurrentWhenActive="page"
+          (click)="menuOpen.set(false)"
+          ><nx-icon [name]="item.icon" />{{ item.label }}
+          @if (item.path === '/actividades') {
+            <span class="nav-count">3</span>
+          }
+        </a>
+      }
+    </nav>
+    <span class="nav-caption second-caption">APRENDEMOS EN EQUIPO</span>
+    <nav aria-label="Acompañamiento">
+      <a
+        routerLink="/tutor"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        (click)="menuOpen.set(false)"
+        ><nx-icon name="users" />Para tutores</a
+      >
+      <a
+        routerLink="/profesional"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        (click)="menuOpen.set(false)"
+        ><nx-icon name="briefcase" />Para profesionales</a
+      >
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-note">
+        <span class="tiny-orbit">✦</span><strong>A tu ritmo, siempre.</strong>
+        <p>Cada pequeño paso cuenta en tu gran aventura.</p>
+        <a routerLink="/experiencia" (click)="menuOpen.set(false)"
+          >Personaliza tu experiencia <nx-icon name="arrow"
+        /></a>
+      </div>
+      <a class="help-link" routerLink="/ayuda" (click)="menuOpen.set(false)"
+        ><nx-icon name="help" />¿Necesitas una mano?<nx-icon name="chevron"
+      /></a>
+      <span class="sidebar-version">Hecho para descubrir. Diseñado para ti.</span>
+    </div>
+  </aside>
+  <div class="workspace" [inert]="mobile() && menuOpen()">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button
+          class="icon-button menu-toggle"
+          aria-label="Abrir o cerrar menú"
+          [attr.aria-expanded]="menuOpen()"
+          (click)="toggleMenu()"
+        >
+          <nx-icon [name]="menuOpen() ? 'close' : 'menu'" /></button
+        ><span class="breadcrumb"
+          >Mi universo <span>/</span> <strong>{{ pageTitle() }}</strong></span
+        >
+      </div>
+      <div class="topbar-actions">
+        <button
+          class="motion-toggle"
+          [attr.aria-label]="preferences.motion() ? 'Pausar animaciones' : 'Movimiento reducido'"
+          [attr.aria-pressed]="!preferences.motion()"
+          [disabled]="preferences.systemReduced()"
+          (click)="preferences.toggleMotion()"
+        >
+          <nx-icon [name]="preferences.motion() ? 'pause' : 'leaf'" /><span>{{
+            preferences.motion() ? 'Pausar animaciones' : 'Movimiento reducido'
+          }}</span></button
+        ><span class="topbar-divider"></span
+        ><a class="profile-link" routerLink="/experiencia" title="Editar mi perfil y edad"
+          ><span class="avatar" aria-hidden="true">{{
+            profiles.profile().name.charAt(0).toUpperCase()
+          }}</span
+          ><span
+            ><strong>{{ profiles.profile().name }}</strong
+            ><small
+              >{{ profiles.profile().age }} años · Explorador{{
+                profiles.stage() === 'teen' ? ' digital' : ''
+              }}</small
+            ></span
+          ><span class="sr-only">Editar mi perfil y edad</span><nx-icon name="chevron"
+        /></a>
+      </div>
+    </header>
+    <main id="main-content" tabindex="-1"><router-outlet /></main>
+    @if (!storage.available()) {
+      <p class="storage-warning" role="status">
+        El almacenamiento local no está disponible. Tus cambios durarán esta sesión.
+      </p>
+    }
+    <footer class="footer">
+      <span>© {{ year }} NexoAprende Experience</span
+      ><span><nx-icon name="heart" />Aprender también es disfrutar.</span
+      ><a routerLink="/ayuda">Accesibilidad y privacidad</a>
+    </footer>
+  </div>
+</div>

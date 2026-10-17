@@ -1,0 +1,123 @@
+<div class="welcome-row">
+  <div>
+    <span class="eyebrow">{{
+      profiles.configured() ? 'QUÉ BUENO TENERTE AQUÍ' : 'TU PERFIL DE EJEMPLO · BIENVENIDO'
+    }}</span>
+    <h1>
+      ¡Hola, {{ profiles.profile().name }}! <span class="greeting-sun" aria-hidden="true">☀</span>
+    </h1>
+    <p>Hoy es un buen día para descubrir algo nuevo.</p>
+  </div>
+  <a class="experience-chip" routerLink="/experiencia"
+    ><span class="chip-dot"></span>{{ profiles.stageLabel()
+    }}<span class="chip-age">{{ profiles.profile().age }} años</span><nx-icon name="settings"
+  /></a>
+</div>
+
+<section
+  #hero
+  class="hero"
+  aria-labelledby="hero-title"
+  (pointermove)="move($event)"
+  (pointerleave)="reset()"
+>
+  <nx-multimedia-background />
+  <div class="hero-copy">
+    <span class="hero-tag"><span></span>UN UNIVERSO DE POSIBILIDADES</span>
+    <h2 id="hero-title">Pequeños pasos.<br />Grandes <span>descubrimientos.</span></h2>
+    <p>
+      {{
+        profiles.stage() === 'child'
+          ? '¡Juega, imagina y descubre! Tu próxima aventura empieza con una sonrisa.'
+          : profiles.stage() === 'teen'
+            ? 'Desarrolla tus habilidades, explora nuevos retos y avanza con confianza. A tu ritmo.'
+            : 'Explora, juega y fortalece tus habilidades con experiencias hechas para tu manera de aprender.'
+      }}
+    </p>
+    <div class="hero-actions">
+      <a routerLink="/actividades" class="button button-cream"
+        >Explorar experiencias<nx-icon name="arrow" /></a
+      ><a routerLink="/experiencia" class="hero-secondary"
+        >Elegir mi edad<nx-icon name="chevron"
+      /></a>
+    </div>
+    <span class="hero-footnote"
+      ><nx-icon name="heart" />Aquí, cada forma de aprender tiene su lugar.</span
+    >
+  </div>
+  <div class="hero-visual">
+    <nx-illustration scene="hero" /><span class="floating-note"
+      ><span>✦</span> Tu curiosidad te lleva lejos</span
+    >
+  </div>
+</section>
+
+<div class="benefits-strip">
+  @for (benefit of benefits; track benefit.icon) {
+    <span><nx-icon [name]="benefit.icon" />{{ benefit.label }}</span>
+  }
+  <span class="benefits-age">Experiencias de 5 a 18 años</span>
+</div>
+
+<section class="explore-section" aria-labelledby="activities-title">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">CADA AVENTURA, UNA NUEVA HABILIDAD</span>
+      <h2 id="activities-title">¿Qué te gustaría descubrir hoy?</h2>
+    </div>
+    <a routerLink="/actividades" class="text-link">Ver actividades<nx-icon name="arrow" /></a>
+  </div>
+  <div class="activity-grid">
+    @for (activity of activities.activities; track activity.id) {
+      <nx-activity-card [activity]="activity" />
+    }
+  </div>
+</section>
+
+<div class="home-bottom-grid">
+  <section class="panel progress-teaser" aria-labelledby="progress-title">
+    <div class="section-heading compact">
+      <div class="inline-heading">
+        <span class="round-icon lavender"><nx-icon name="chart" /></span>
+        <h2 id="progress-title">Cada paso cuenta</h2>
+      </div>
+      <span class="badge">Tu progreso</span>
+    </div>
+    <p>
+      {{
+        progress.summary().sessions
+          ? 'Lo estás construyendo, una experiencia a la vez.'
+          : 'Tu historia de aprendizaje está por comenzar.'
+      }}
+    </p>
+    <div class="goal-line">
+      <strong>Tu meta: 3 aventuras esta semana</strong
+      ><span>{{ progress.weeklyGoal() | number: '1.0-0' }}%</span>
+    </div>
+    <nx-progress-bar [value]="progress.weeklyGoal()" label="Meta semanal de tres sesiones" />
+    <div class="progress-teaser-footer">
+      <span
+        ><nx-icon name="star" />{{ progress.summary().sessions }}
+        {{
+          progress.summary().sessions === 1 ? 'aventura completada' : 'aventuras completadas'
+        }}</span
+      ><a routerLink="/progreso" class="text-link">Mi progreso<nx-icon name="arrow" /></a>
+    </div>
+  </section>
+  <section class="together-card">
+    <span class="together-art" aria-hidden="true"><nx-icon name="users" /></span>
+    <div>
+      <span class="eyebrow">CRECER ES MEJOR EN COMPAÑÍA</span>
+      <h2>Un equipo para acompañarte.</h2>
+      <p>Familias y profesionales, conectados por lo que más importa: tu aprendizaje.</p>
+      <div class="together-links">
+        <a routerLink="/tutor">Soy tutor<nx-icon name="arrow" /></a
+        ><a routerLink="/profesional">Soy profesional<nx-icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+</div>
+<nx-message
+  >Las actividades y sus resultados son educativos y descriptivos. No realizan diagnósticos médicos
+  ni psicológicos.</nx-message
+>
