@@ -66,7 +66,7 @@ for (const [key, candidates] of Object.entries(requested)) {
               : header.toString('ascii', 4, 8) === 'ftyp';
     }
     if (valid) {
-      assets[key] = '/' + relative;
+      assets[key] = relative;
       break;
     }
   }
@@ -78,10 +78,10 @@ const enabled =
 const activeAssets = enabled ? assets : {};
 const indexPath = resolve(root, 'src/index.html');
 const indexSource = readFileSync(indexPath, 'utf8');
-const favicon = activeAssets.favicon ?? '/favicon.svg';
+const favicon = activeAssets.favicon ?? 'favicon.svg';
 const updatedIndex = indexSource.replace(
   /<link rel="icon"[^>]*\/>/,
-  `<link rel="icon" type="${favicon.endsWith('.svg') ? 'image/svg+xml' : favicon.endsWith('.png') ? 'image/png' : 'image/webp'}" href="${favicon.slice(1)}" />`,
+  `<link rel="icon" type="${favicon.endsWith('.svg') ? 'image/svg+xml' : favicon.endsWith('.png') ? 'image/png' : 'image/webp'}" href="${favicon}" />`,
 );
 if (updatedIndex !== indexSource) writeFileSync(indexPath, updatedIndex);
 const rawSource =

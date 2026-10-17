@@ -1,10 +1,14 @@
 # NexoAprende Experience
 
+**Aplicación pública:** https://mattupapi-art.github.io/NexoAprende-Experience/
+
+Despliegue automático al actualizar `main`: [configuración y pruebas de GitHub Pages](docs/GITHUB-PAGES.md).
+
 Primera versión funcional — **Hito 1**, aplicación gráfica y multimedia con Angular. Una plataforma educativa en español para explorar atención, memoria y comprensión lectora entre los 5 y los 18 años.
 
 Renovación actual: universo con física, planetas/pelotas/animales que se arrastran y lanzan, modo día/noche persistente, logotipo y Nexito aportados, doce fondos personalizados, videos reales y fotografías optimizadas. Inventario, controles y verificación: [docs/RENOVACION-MULTIMEDIA.md](docs/RENOVACION-MULTIMEDIA.md). La [renovación artística anterior](docs/RENOVACION-ARTISTICA.md) y la [segunda mejora visual](docs/MEJORA-VISUAL.md) quedan como registros históricos.
 
-Proyecto independiente en `nexoaprende-experience`. No se usa ni se modifica el proyecto `plataforma-apoyo-infantil`, su repositorio, Laravel ni su base de datos. No hay autenticación real, backend, PostgreSQL ni publicación en internet.
+Proyecto independiente en `nexoaprende-experience`. No se usa ni se modifica el proyecto `plataforma-apoyo-infantil`, su repositorio, Laravel ni su base de datos. La aplicación se publica como sitio estático; no hay autenticación real, backend ni PostgreSQL.
 
 Entrega para **Programación Gráfica y Multimedia**: descripción académica del uso de Codex en [AGENTE_IA.md](AGENTE_IA.md), código fuente y multimedia del producto. El video explicativo se entrega por separado. La grabación ajena utilizada como referencia está excluida del proyecto público y de la entrega.
 
@@ -33,7 +37,7 @@ git diff --check
 
 `npm test` usa Vitest sin modo interactivo. Las pruebas E2E usan Playwright y axe-core, arrancan su propio servidor en **4317** y lo detienen al terminar; la vista local en 4307 puede permanecer abierta. La configuración evita reutilizar por error otro sitio. En Windows se utiliza Chrome si está instalado en su ruta habitual. En otros entornos, instalar el navegador de pruebas con `npx playwright install chromium`.
 
-El build estático se genera en `dist/nexoaprende-experience/browser`. Para un alojamiento futuro, configurar la reescritura de rutas hacia `index.html`; copiar los archivos a un hosting no forma parte de este hito.
+El build de producción se genera en `dist/nexoaprende-experience/browser`, con base `/NexoAprende-Experience/` y rutas con `#` para permitir la recarga en GitHub Pages. `npm run build:pages` compila y verifica el artefacto; `npm run serve:pages` permite revisarlo en `http://127.0.0.1:4327/NexoAprende-Experience/`. Consultar [GITHUB-PAGES.md](docs/GITHUB-PAGES.md) para pruebas y despliegue automático. La vista de desarrollo mediante `npm start` conserva sus rutas locales habituales.
 
 ## Pantallas y alcance
 
@@ -128,10 +132,11 @@ Registro de comprobaciones y límites: [docs/VERIFICACION.md](docs/VERIFICACION.
 - Instalación npm y build de producción.
 - 36 pruebas unitarias: dominio, persistencia, multimedia, Nexito, física y tema.
 - 22 escenarios E2E (11 en escritorio, 11 en emulación móvil): navegación, cinco anchos, edad y persistencia, partida completa, pausa/reinicio, modal e historial, teclado, movimiento reducido, tres mundos, recursos comprobados, Nexito, ambos videos, fotografías, temas y lanzamientos con mouse/teclado/toque.
+- 6 escenarios E2E adicionales sobre el build de producción servido bajo `/NexoAprende-Experience/`: rutas hash y recarga, recursos, fuentes, modo nocturno, universo, toque emulado, videos y resultados de memoria. Se ejecutan con `npm run test:e2e:pages` después del build.
 - axe-core con reglas WCAG A/AA en doce rutas, tablero, resultados y las tres variantes de edad. Son comprobaciones automáticas, no una certificación integral de accesibilidad.
 - Capturas de inicio, selector, catálogo, panel y resultados en `artifacts/` (fuera de Git); trazas y reporte en `test-results/` y `playwright-report/` cuando corresponda.
 
-Repositorio del código fuente: **[MATTUPAPI-art/NexoAprende-Experience](https://github.com/MATTUPAPI-art/NexoAprende-Experience)**, rama `main`. Para descargar la entrega, abrir **Code → Download ZIP**. También se puede clonar con `git clone https://github.com/MATTUPAPI-art/NexoAprende-Experience.git`. El repositorio incluye las fuentes, `AGENTE_IA.md`, la configuración y la multimedia educativa; excluye dependencias, builds, temporales y la grabación ajena de referencia. La publicación del código no implica desplegar la aplicación en un hosting.
+Repositorio del código fuente: **[MATTUPAPI-art/NexoAprende-Experience](https://github.com/MATTUPAPI-art/NexoAprende-Experience)**, rama `main`. Para descargar la entrega, abrir **Code → Download ZIP**. También se puede clonar con `git clone https://github.com/MATTUPAPI-art/NexoAprende-Experience.git`. El repositorio incluye las fuentes, `AGENTE_IA.md`, la configuración y la multimedia educativa; excluye dependencias, builds, temporales y la grabación ajena de referencia. El sitio estático se publica por separado mediante GitHub Actions y GitHub Pages.
 
 ## Segundo hito
 

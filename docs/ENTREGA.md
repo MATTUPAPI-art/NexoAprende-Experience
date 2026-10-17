@@ -18,6 +18,8 @@ La rama de entrega es `main`. El remoto `origin` corresponde a `https://github.c
 
 Repositorio: **https://github.com/MATTUPAPI-art/NexoAprende-Experience**.
 
+Aplicación pública en GitHub Pages: **https://mattupapi-art.github.io/NexoAprende-Experience/**. El despliegue se actualiza automáticamente desde `main`. Las rutas de producción utilizan `#`, por ejemplo `#/actividades/memory`, para permitir su recarga. Consultar [GITHUB-PAGES.md](GITHUB-PAGES.md) para configuración y comprobaciones del sitio estático.
+
 La comprobación previa encontró el repositorio público vacío y el push en modo simulación fue aceptado. La publicación se realiza mediante un push normal a `main`, sin reescribir el historial ni utilizar `git push --force`. No se guardan contraseñas ni tokens en el proyecto.
 
 ## Descargar el código desde GitHub

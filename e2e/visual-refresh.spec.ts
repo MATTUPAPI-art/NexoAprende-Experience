@@ -44,13 +44,16 @@ test('new compositions keep every world usable without missing media requests', 
     fullPage: true,
     animations: 'disabled',
   });
+  const baseURI = await page.evaluate(() => document.baseURI);
   const available = [
     MEDIA.cover,
     MEDIA.activities,
     ...Object.values(MEDIA.stages),
     ...Object.values(MEDIA.worlds),
     ...Object.values(MEDIA.art),
-  ].filter(Boolean);
+  ]
+    .filter((asset): asset is string => !!asset)
+    .map((asset) => new URL(asset, baseURI).pathname);
   expect(mediaRequests.every((url) => available.includes(url))).toBe(true);
   if (!MEDIA.cover && !MEDIA.activities && !Object.values(MEDIA.stages).length) {
     expect(mediaRequests).toEqual([]);

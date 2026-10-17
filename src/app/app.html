@@ -4,7 +4,7 @@
   [attr.data-stage]="profiles.stage()"
   [class.motion-off]="!preferences.motion()"
 >
-  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+  <a class="skip-link" [routerLink]="[]" fragment="main-content">Saltar al contenido</a>
   @if (menuOpen()) {
     <button class="sidebar-scrim" aria-label="Cerrar menú" (click)="menuOpen.set(false)"></button>
   }
