@@ -7,16 +7,35 @@ import { ProfileService } from '../../core/services/profile.service';
 import { PageHeadingComponent } from '../../shared/components/page-heading';
 import { MessageComponent } from '../../shared/components/message';
 import { IconComponent } from '../../shared/components/icon';
+import { StageArtComponent } from '../../shared/components/stage-art';
 
 @Component({
   selector: 'nx-professional-demo',
-  imports: [FormsModule, RouterLink, PageHeadingComponent, MessageComponent, IconComponent],
+  imports: [
+    FormsModule,
+    RouterLink,
+    PageHeadingComponent,
+    MessageComponent,
+    IconComponent,
+    StageArtComponent,
+  ],
   template: `
     <nx-page-heading
       eyebrow="OTRA MIRADA PARA ACOMPAÑAR"
       title="Conectados por el aprendizaje."
       description="Vista inicial del espacio profesional: perfiles, experiencias y conversaciones educativas."
     />
+    <section class="companion-heading professional-heading">
+      <div>
+        <span class="eyebrow">OBSERVAR / CONVERSAR / ACOMPAÑAR</span>
+        <h2>Otra mirada.<br />Más posibilidades.</h2>
+        <p>Un espacio para comprender el recorrido, sin reducirlo a una puntuación.</p>
+      </div>
+      <figure class="companion-photo">
+        <nx-stage-art stage="teen" kind="photo" [eager]="true" />
+        <figcaption>Ambientes reales para aprender y explorar.</figcaption>
+      </figure>
+    </section>
     <nx-message [demo]="true" title="Panel profesional · Demostración"
       >{{ professional.name }} es un perfil ficticio de {{ professional.specialty.toLowerCase() }}.
       Las autorizaciones son simuladas; no hay acceso a información de otras personas.</nx-message

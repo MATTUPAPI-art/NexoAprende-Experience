@@ -1,0 +1,736 @@
+@mixin styles {
+  body {
+    background: #f4f8ff;
+  }
+  .app-shell {
+    --primary: #6450b5;
+    --soft-primary: #ede8ff;
+    --text: #2d3857;
+    --muted: #596b83;
+    --border: #dce5f1;
+    --radius: 23px;
+    --radius-lg: 30px;
+    --shadow: 0 8px 26px #264d7510;
+    --world-surface: #eeeaff;
+    --world-ink: #382d61;
+    --world-muted: #514a77;
+    --world-accent: #7251b2;
+    --world-border: #ddd4f4;
+    background: #f4f8ff;
+    min-height: 100vh;
+  }
+  .app-shell[data-stage='child'] {
+    --primary: #28746b;
+    --soft-primary: #def3e9;
+    --world-surface: #dff6ff;
+    --world-ink: #244d60;
+    --world-muted: #365f70;
+    --world-accent: #276b69;
+    --world-border: #c4e6ec;
+    --radius: 26px;
+    --radius-lg: 34px;
+    --font-heading: 'Nunito Sans Variable', sans-serif;
+    background: #f0fbf9;
+  }
+  .app-shell[data-stage='junior'] {
+    --primary: #6450b5;
+    --soft-primary: #ede8ff;
+    --world-surface: #eeeaff;
+    --world-ink: #382d61;
+    --world-muted: #514a77;
+    --world-accent: #7251b2;
+    --world-border: #ddd4f4;
+    background: #f6f4ff;
+  }
+  .app-shell[data-stage='teen'] {
+    --primary: #345fa5;
+    --soft-primary: #e6eefc;
+    --world-surface: #142443;
+    --world-ink: #f3f7ff;
+    --world-muted: #d0dfef;
+    --world-accent: #8ae2d0;
+    --world-border: #284571;
+    --radius: 16px;
+    --radius-lg: 25px;
+    --font-heading: 'Outfit Variable', sans-serif;
+    background: #f0f5fd;
+  }
+  .app-shell[data-stage='teen'] .hero {
+    background: var(--world-surface);
+    border-radius: 28px;
+  }
+  .app-shell .hero-media nx-multimedia-background .contrast-layer {
+    background: linear-gradient(0deg, #14244344, transparent 70%);
+  }
+  .app-shell .hero-media .video-control {
+    right: 10px;
+    bottom: 11px;
+    min-height: 38px;
+    padding: 8px 11px;
+    font-size: 9px;
+  }
+  .app-shell .hero-media .video-control nx-icon {
+    height: 12px;
+    width: 12px;
+  }
+  .app-shell .button {
+    border-radius: 19px;
+    font-size: 12px;
+    min-height: 46px;
+    gap: 12px;
+    font-weight: 850;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
+  }
+  .app-shell .button-primary {
+    color: #fff;
+    background: var(--primary);
+    border: 1px solid #ffffff40;
+    box-shadow: 0 4px 0 #283c652b;
+  }
+  .app-shell .button-primary:hover {
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 7px 0 #283c6524;
+    filter: brightness(1.04);
+  }
+  .app-shell .button-primary:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 #283c6524;
+  }
+  .app-shell .button-secondary {
+    background: #fff;
+    border-color: var(--border);
+    color: #405573;
+    box-shadow: 0 3px 0 #e7edf5;
+  }
+  .app-shell[data-stage='child'] .button {
+    border-radius: 22px;
+    min-height: 50px;
+    font-size: 13px;
+  }
+  .app-shell .panel {
+    border-color: var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    box-shadow: var(--shadow);
+  }
+  .app-shell .page-heading {
+    margin-bottom: 27px;
+    padding: 22px 29px 25px;
+    border: 1px solid var(--world-border);
+    border-radius: 26px;
+    background: var(--world-surface);
+    color: var(--world-ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .app-shell .page-heading::after {
+    content: '';
+    position: absolute;
+    width: 145px;
+    height: 145px;
+    border: 25px solid var(--world-accent);
+    opacity: 0.06;
+    border-radius: 50%;
+    top: -70px;
+    right: 17%;
+    pointer-events: none;
+  }
+  .app-shell .page-heading h1 {
+    font-size: 36px;
+    line-height: 1.13;
+    letter-spacing: -1px;
+    font-weight: 550;
+    margin: 11px 0;
+    max-width: 900px;
+  }
+  .app-shell .page-heading p {
+    color: var(--world-muted);
+    font-size: 13px;
+    max-width: 720px;
+  }
+  .app-shell .page-heading .eyebrow {
+    color: var(--world-muted);
+  }
+  .app-shell .eyebrow {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    font-weight: 850;
+  }
+  .app-shell .section-heading h2 {
+    font-size: 28px;
+    font-weight: 550;
+    letter-spacing: -0.7px;
+  }
+  .app-shell .section-heading.compact h2 {
+    font-size: 21px;
+  }
+  .app-shell .text-link {
+    min-height: 44px;
+    font-size: 12px;
+    color: var(--primary);
+  }
+  .app-shell .round-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 13px;
+  }
+  .app-shell .badge {
+    background: #ede9fa;
+    color: #5b4786;
+    border-radius: 9px;
+    padding: 6px 9px;
+    font-size: 9px;
+  }
+  .app-shell .badge-green {
+    background: #e2f3e8;
+    color: #366247;
+  }
+  .app-shell .badge-warm {
+    background: #fff1cc;
+    color: #79561d;
+  }
+  .app-shell .notice {
+    border-color: #d1e4df;
+    background: #eaf6f0;
+    color: #436555;
+    border-radius: 16px;
+  }
+  .app-shell .notice strong {
+    color: #345942;
+  }
+  .app-shell .notice-demo {
+    background: #eef0fc;
+    border-color: #d8dcf2;
+    color: #54587c;
+  }
+  .app-shell .notice-demo strong {
+    color: #4f4c7a;
+  }
+  .app-shell .progress-track {
+    background: #e5ebf6;
+    height: 10px;
+  }
+  .app-shell .progress-track > span {
+    background: var(--primary);
+  }
+  .app-shell .activity-grid {
+    gap: 24px;
+  }
+  .app-shell .activity-card {
+    border-radius: 27px;
+    border: 1px solid #dfe3f0;
+    background: #fff;
+    box-shadow: 0 5px 0 #dce6f45c;
+    transform: perspective(1000px) rotateX(var(--depth-y, 0deg)) rotateY(var(--depth-x, 0deg));
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+  .app-shell .activity-card:hover {
+    box-shadow: 0 14px 30px #39466d1a;
+    transform: perspective(1000px) rotateX(var(--depth-y, 0deg)) rotateY(var(--depth-x, 0deg))
+      translateY(-5px);
+  }
+  .app-shell .activity-card.attention {
+    border-color: #cfe4d6;
+    border-radius: 40px 25px 25px 25px;
+  }
+  .app-shell .activity-card.memory {
+    border-color: #d7c9ef;
+    border-radius: 25px 40px 25px 25px;
+  }
+  .app-shell .activity-card.reading {
+    border-color: #f2dfb7;
+    border-radius: 25px 25px 40px 25px;
+  }
+  .app-shell .activity-art {
+    height: 220px;
+    background: #dcf2e5;
+    isolation: isolate;
+    position: relative;
+  }
+  .app-shell .activity-card.memory .activity-art {
+    background: #ebe1fc;
+  }
+  .app-shell .activity-card.reading .activity-art {
+    background: #fff0ce;
+  }
+  .app-shell .activity-art::before {
+    content: '';
+    position: absolute;
+    width: 210px;
+    height: 210px;
+    border: 1px solid #ffffffa8;
+    border-radius: 50%;
+    left: 50%;
+    top: 8%;
+    translate: -50% 0;
+    z-index: -1;
+    box-shadow:
+      0 0 0 18px #ffffff22,
+      0 0 0 36px #ffffff14;
+  }
+  .app-shell .activity-art nx-illustration {
+    width: 100%;
+    height: 100%;
+    transform: translateY(5px) scale(1.02);
+    transition: transform 0.5s ease;
+  }
+  .app-shell .activity-card:hover nx-illustration {
+    transform: translateY(-3px) rotate(-3deg) scale(1.06);
+  }
+  .app-shell .activity-area {
+    background: #fffffff0;
+    top: 17px;
+    left: 17px;
+    font-size: 10px;
+    color: #3c6a53;
+    border-radius: 14px;
+    padding: 7px 11px;
+  }
+  .app-shell .activity-area nx-icon {
+    height: 13px;
+    width: 13px;
+  }
+  .app-shell .activity-card.memory .activity-area {
+    color: #6e4b98;
+  }
+  .app-shell .activity-card.reading .activity-area {
+    color: #896024;
+  }
+  .app-shell .activity-index {
+    position: absolute;
+    top: 16px;
+    right: 19px;
+    font-family: var(--font-heading);
+    font-size: 29px;
+    line-height: 1;
+    color: #637c764d;
+  }
+  .app-shell .activity-status {
+    bottom: 12px;
+    right: 15px;
+    border-radius: 8px;
+    padding: 5px 8px;
+    font-size: 9px;
+    color: #4c6255;
+    background: #ffffffef;
+  }
+  .app-shell .activity-body {
+    padding: 23px 23px 0;
+  }
+  .app-shell .card-kicker {
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .app-shell .activity-body h3 {
+    font-size: 24px;
+    line-height: 1.18;
+    font-weight: 550;
+    margin: 10px 0 12px;
+  }
+  .app-shell .activity-body > p {
+    font-size: 12px;
+    line-height: 1.8;
+    min-height: 44px;
+    margin-bottom: 19px;
+  }
+  .app-shell .activity-meta {
+    font-size: 10px;
+  }
+  .app-shell .activity-link {
+    font-size: 12px;
+    padding: 17px 0;
+    min-height: 54px;
+    color: #3f7055;
+    border-top-color: #e7edf5;
+  }
+  .app-shell .memory .activity-link {
+    color: #77519f;
+  }
+  .app-shell .reading .activity-link {
+    color: #866029;
+  }
+  .app-shell .catalog-note {
+    background: #e8f1fd;
+    border: 1px solid #d8e5f5;
+    border-radius: 24px;
+    padding: 22px 28px;
+  }
+  .app-shell .catalog-grid.is-all {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 25px 0 0;
+  }
+  .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) {
+    grid-column: 1/-1;
+    grid-row: 1;
+  }
+  .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-card {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    min-height: 330px;
+    background: #f1ebff;
+    border-color: #d7c5f2;
+    border-radius: 30px;
+  }
+  .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-art {
+    grid-column: 2;
+    grid-row: 1;
+    height: 100%;
+    min-height: 330px;
+  }
+  .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-body {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 35px 37px 0;
+  }
+  .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) h3 {
+    font-size: 38px;
+    letter-spacing: -1px;
+    max-width: 360px;
+  }
+  .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-body > p {
+    font-size: 14px;
+    max-width: 410px;
+  }
+  .app-shell .filter-button {
+    border-radius: 25px;
+    background: #fff;
+    border-color: #d6e0f0;
+  }
+  .app-shell .filter-button.selected {
+    color: #fff;
+    background: var(--primary);
+    border-color: var(--primary);
+  }
+  .app-shell .dashboard-profile {
+    border-radius: 21px;
+    background: #fff;
+    border-color: var(--border);
+    margin: 24px 0 0;
+    padding: 22px;
+  }
+  .app-shell .week-track {
+    background: #e9e5fa;
+    border-radius: 8px;
+    width: 30px;
+  }
+  .app-shell .week-track i {
+    border-radius: 8px;
+    background: #b5a2d9;
+  }
+  .app-shell .week-chart > div:nth-child(4) i {
+    background: var(--primary);
+  }
+  .app-shell .goal-number {
+    color: var(--primary);
+  }
+  .app-shell .companion-heading {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 330px;
+    border-radius: 30px;
+    overflow: hidden;
+    margin: 0 0 28px;
+    border: 1px solid #cce4ed;
+  }
+  .app-shell .companion-heading > div:first-child {
+    padding: 37px 42px;
+  }
+  .app-shell .companion-heading h2 {
+    font-size: 45px;
+    letter-spacing: -1.5px;
+    line-height: 1.08;
+    margin: 25px 0 20px;
+  }
+  .app-shell .companion-heading p {
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 420px;
+    margin: 0;
+  }
+  .app-shell .family-heading {
+    color: #28596a;
+    background: #e0f5f6;
+  }
+  .app-shell .family-heading .eyebrow {
+    color: #376579;
+  }
+  .app-shell .professional-heading {
+    color: #f0f4ff;
+    background: #203b61;
+  }
+  .app-shell .professional-heading .eyebrow {
+    color: #bddeec;
+  }
+  .app-shell .companion-photo {
+    margin: 0;
+    min-width: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .app-shell .companion-photo nx-stage-art {
+    height: 100%;
+    min-height: 330px;
+  }
+  .app-shell .companion-photo figcaption {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 18px;
+    width: fit-content;
+    font-size: 10px;
+    font-weight: 750;
+    line-height: 1.6;
+    background: #ffffffed;
+    color: #34516c;
+    padding: 9px 13px;
+    border-radius: 13px;
+  }
+  .app-shell .stat-card {
+    background: #fff;
+    border-color: #d9e4f1;
+    border-radius: 23px;
+    border-top: 4px solid #a2bbdf;
+  }
+  .app-shell .stat-card:nth-child(2) {
+    border-top-color: #8dcbb2;
+    background: #f4fcf8;
+  }
+  .app-shell .stat-card:nth-child(3) {
+    border-top-color: #e5bd83;
+    background: #fffbf3;
+  }
+  .app-shell .stat-card:nth-child(4) {
+    border-top-color: #b7a5e4;
+    background: #f9f6ff;
+  }
+  .app-shell .stat-value {
+    color: var(--primary);
+  }
+  .app-shell .intro-illustration {
+    position: relative;
+    background: #e7ddfa;
+    border: 1px solid #d3c4ed;
+    border-radius: 34px;
+    overflow: hidden;
+  }
+  .app-shell .intro-illustration > nx-illustration {
+    max-height: 230px;
+    margin-top: 35px;
+  }
+  .app-shell .intro-friend {
+    width: 150px;
+    position: absolute;
+    right: -8px;
+    top: -20px;
+    rotate: 8deg;
+  }
+  .app-shell .intro-instructions {
+    border-top: 4px solid #9c81d3;
+  }
+  .app-shell .memory-tile {
+    border-radius: 19px;
+    background: #dfd5f3;
+    border-color: #beadd8;
+    box-shadow: 0 3px 0 #a78ec31a;
+  }
+  .app-shell .memory-tile.is-matched {
+    animation: pair-discovery 0.5s ease-out;
+  }
+  .app-shell .tile-back > span {
+    color: #8060a5;
+    border-color: #b4a0ce;
+  }
+  .app-shell .tile-back nx-brand-mark {
+    width: 40px;
+    height: 40px;
+  }
+  .app-shell .game-friend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 18px;
+    border-radius: 18px;
+    background: #f0f7fd;
+    padding: 5px 15px;
+  }
+  .app-shell .game-friend nx-nexito {
+    width: 70px;
+    flex: none;
+  }
+  .app-shell .game-friend p {
+    font-size: 12px;
+    color: #49617f;
+    max-width: 320px;
+  }
+  .app-shell .results-dialog {
+    background: #f9fcff;
+    border-radius: 30px;
+    border-color: #cbdff0;
+  }
+  .app-shell .results-inner > .result-friend {
+    width: 155px;
+    margin: -18px auto -8px;
+  }
+  .app-shell .results-inner .celebration {
+    display: none;
+  }
+  .app-shell .section-arrived {
+    animation: section-arrive 0.6s ease-out both;
+  }
+  .app-shell[data-stage='teen'] .section-arrived {
+    animation-duration: 0.25s;
+  }
+  .app-shell .motion-off [nxDepth],
+  .app-shell .motion-off .hero-friend {
+    transform: none !important;
+  }
+  .app-shell .motion-off .world-link:hover,
+  .app-shell .motion-off .activity-card:hover nx-illustration {
+    transform: none;
+  }
+  @keyframes section-arrive {
+    from {
+      opacity: 0.6;
+      translate: 0 10px;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+  @keyframes pair-discovery {
+    0% {
+      transform: scale(0.94);
+    }
+    55% {
+      transform: scale(1.04);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .app-shell [nxDepth],
+    .app-shell .hero-friend,
+    .app-shell .world-link:hover,
+    .app-shell .activity-card:hover nx-illustration {
+      transform: none !important;
+    }
+  }
+  @media (max-width: 1100px) {
+    .app-shell .activity-grid {
+      gap: 18px;
+    }
+    .app-shell .activity-body {
+      padding: 21px 19px 0;
+    }
+    .app-shell .activity-body h3 {
+      font-size: 22px;
+    }
+    .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-body {
+      padding: 30px 28px 0;
+    }
+  }
+  @media (max-width: 680px) {
+    .app-shell .page-heading {
+      padding: 23px;
+      border-radius: 23px;
+      gap: 17px;
+    }
+    .app-shell .page-heading h1 {
+      font-size: 29px;
+    }
+    .app-shell .page-heading p {
+      font-size: 12px;
+    }
+    .app-shell .section-heading h2 {
+      font-size: 25px;
+    }
+    .app-shell .section-heading.compact h2 {
+      font-size: 20px;
+    }
+    .app-shell .text-link {
+      font-size: 11px;
+    }
+    .app-shell .activity-grid {
+      gap: 23px;
+    }
+    .app-shell .activity-art {
+      height: 210px;
+    }
+    .app-shell .activity-body {
+      padding: 23px 22px 0;
+    }
+    .app-shell .activity-body h3 {
+      font-size: 25px;
+    }
+    .app-shell .activity-body > p {
+      font-size: 13px;
+      min-height: 0;
+    }
+    .app-shell .catalog-grid.is-all {
+      grid-template-columns: 1fr;
+    }
+    .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-card {
+      display: flex;
+    }
+    .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-art {
+      min-height: 215px;
+      height: 215px;
+      order: 0;
+    }
+    .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-body {
+      padding: 25px 24px 0;
+      order: 1;
+    }
+    .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) h3 {
+      font-size: 31px;
+    }
+    .app-shell .companion-heading {
+      grid-template-columns: 1fr;
+      border-radius: 24px;
+    }
+    .app-shell .companion-heading > div:first-child {
+      padding: 28px;
+    }
+    .app-shell .companion-heading h2 {
+      font-size: 37px;
+      margin: 20px 0 17px;
+    }
+    .app-shell .companion-heading p {
+      font-size: 13px;
+    }
+    .app-shell .companion-photo nx-stage-art {
+      min-height: 245px;
+      height: 245px;
+    }
+    .app-shell .companion-photo figcaption {
+      font-size: 9px;
+    }
+    .app-shell .intro-friend {
+      width: 100px;
+    }
+    .app-shell .intro-illustration > nx-illustration {
+      height: 190px;
+      margin-top: 15px;
+    }
+    .app-shell .hero-media .video-control {
+      right: 6px;
+      bottom: 7px;
+      min-height: 38px;
+      font-size: 8px;
+      padding: 7px;
+    }
+    .app-shell .hero-media .video-control span {
+      max-width: 82px;
+    }
+  }
+}

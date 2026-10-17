@@ -3,18 +3,21 @@ import { RouterLink } from '@angular/router';
 import { Activity } from '../../core/models/models';
 import { IllustrationComponent } from './illustration';
 import { IconComponent } from './icon';
+import { DepthDirective } from '../directives/depth';
 @Component({
   selector: 'nx-activity-card',
-  imports: [RouterLink, IllustrationComponent, IconComponent],
+  imports: [RouterLink, IllustrationComponent, IconComponent, DepthDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `<article class="activity-card" [class]="'activity-card ' + activity().id">
+  template: `<article nxDepth class="activity-card" [class]="'activity-card ' + activity().id">
     <div class="activity-art">
-      <span class="activity-area"><nx-icon [name]="activity().icon" />{{ activity().area }}</span
-      ><nx-illustration [scene]="activity().id" /><span
-        class="activity-status"
-        [class.ready]="activity().available"
-        >{{ activity().available ? 'Disponible' : 'Demostración' }}</span
-      >
+      <span class="activity-area"><nx-icon [name]="activity().icon" />{{ activity().area }}</span>
+      <nx-illustration [scene]="activity().id" />
+      <span class="activity-index" aria-hidden="true">{{
+        activity().id === 'memory' ? '02' : activity().id === 'attention' ? '01' : '03'
+      }}</span
+      ><span class="activity-status" [class.ready]="activity().available">{{
+        activity().available ? 'Disponible' : 'Demostración'
+      }}</span>
     </div>
     <div class="activity-body">
       <span class="card-kicker">{{ activity().tag }}</span>

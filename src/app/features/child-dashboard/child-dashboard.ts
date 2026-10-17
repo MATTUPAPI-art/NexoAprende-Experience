@@ -11,6 +11,7 @@ import { PageHeadingComponent } from '../../shared/components/page-heading';
 import { MessageComponent } from '../../shared/components/message';
 import { ProgressBarComponent } from '../../shared/components/progress-bar';
 import { IconComponent } from '../../shared/components/icon';
+import { WorldBannerComponent } from '../../shared/components/world-banner';
 
 @Component({
   selector: 'nx-child-dashboard',
@@ -23,6 +24,7 @@ import { IconComponent } from '../../shared/components/icon';
     MessageComponent,
     ProgressBarComponent,
     IconComponent,
+    WorldBannerComponent,
   ],
   template: `
     <nx-page-heading
@@ -32,6 +34,23 @@ import { IconComponent } from '../../shared/components/icon';
       ><a routerLink="/experiencia" class="button button-secondary"
         >Editar mi experiencia<nx-icon name="settings" /></a
     ></nx-page-heading>
+    <nx-world-banner
+      [eyebrow]="
+        profiles.stage() === 'child'
+          ? 'TU AVENTURA ESTÁ POR COMENZAR'
+          : profiles.stage() === 'teen'
+            ? 'HOY, A TU MANERA'
+            : 'SE BUSCAN NUEVAS IDEAS'
+      "
+      [title]="
+        profiles.stage() === 'child'
+          ? 'Las mejores ideas empiezan jugando.'
+          : profiles.stage() === 'teen'
+            ? 'Un poco de foco. Mucho por descubrir.'
+            : 'Tu próxima pregunta puede llevarte lejos.'
+      "
+      description="No hay un camino único. Elige una experiencia y descubre qué puedes construir hoy."
+    />
     <div class="dashboard-profile panel">
       <span class="avatar avatar-large">{{ profiles.profile().name.charAt(0).toUpperCase() }}</span>
       <div>

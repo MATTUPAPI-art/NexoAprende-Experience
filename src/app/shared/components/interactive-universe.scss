@@ -1,0 +1,233 @@
+:host {
+  display: block;
+  scroll-margin-top: 20px;
+  margin: 28px 0 38px;
+}
+.universe {
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.universe-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 26px 30px 18px;
+}
+.universe-heading h2 {
+  font-size: 30px;
+  margin: 7px 0 0;
+}
+.universe-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+.universe-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px 17px;
+  gap: 14px;
+}
+.universe-tabs {
+  display: flex;
+  gap: 6px;
+}
+.universe-tabs button,
+.universe-pause,
+.universe-reset {
+  min-height: 44px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--surface);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 5px 15px;
+  font-size: 12px;
+  font-weight: 800;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.universe-tabs button[aria-pressed='true'] {
+  background: var(--primary);
+  color: var(--on-primary);
+  border-color: var(--primary);
+}
+.universe-tabs button:hover,
+.universe-reset:hover {
+  transform: translateY(-2px);
+}
+.universe-tabs nx-floating-object {
+  width: 34px;
+  height: 34px;
+}
+.universe-field {
+  position: relative;
+  height: 310px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 20% 0, #8ddace55, transparent 55%),
+    radial-gradient(ellipse at 80% 80%, #aa83ed44, transparent 60%), var(--universe-bg);
+  border-block: 1px solid var(--border);
+}
+.universe-orbit {
+  position: absolute;
+  pointer-events: none;
+  width: 520px;
+  height: 180px;
+  left: calc(50% - 260px);
+  top: calc(50% - 90px);
+  border: 1px solid var(--orbit-line);
+  border-radius: 50%;
+  transform: rotate(-20deg);
+}
+.orbit-two {
+  transform: rotate(30deg);
+  width: 370px;
+  left: calc(50% - 185px);
+  height: 230px;
+  top: calc(50% - 115px);
+}
+.field-caption {
+  position: absolute;
+  inset: 48% 0 auto;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--universe-ink);
+  pointer-events: none;
+}
+.floating-body {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  will-change: transform;
+  -webkit-user-drag: none;
+}
+.floating-body:active {
+  cursor: grabbing;
+  z-index: 2;
+}
+.floating-body:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 1px;
+}
+.universe-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 26px;
+}
+.universe-footer p {
+  font-size: 12px;
+  margin: 0;
+  color: var(--text);
+}
+.universe-footer small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+}
+.throw-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex: none;
+}
+.throw-counter {
+  position: relative;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 850;
+  color: var(--primary);
+}
+.throw-bonus {
+  position: absolute;
+  right: 0;
+  top: -22px;
+  padding: 3px 8px;
+  background: var(--primary);
+  color: var(--on-primary);
+  border-radius: 10px;
+  animation: throw-point 0.7s ease-out both;
+}
+.universe-reset {
+  padding: 10px;
+}
+.universe-reset nx-icon {
+  width: 16px;
+}
+@keyframes throw-point {
+  from {
+    opacity: 1;
+    translate: 0 8px;
+  }
+  to {
+    opacity: 0;
+    translate: 0 -14px;
+  }
+}
+@media (max-width: 680px) {
+  .universe-heading {
+    padding: 23px 20px 16px;
+  }
+  .universe-heading h2 {
+    font-size: 25px;
+  }
+  .universe-label {
+    display: none;
+  }
+  .universe-toolbar {
+    flex-wrap: wrap;
+    padding: 0 16px 16px;
+  }
+  .universe-tabs {
+    width: 100%;
+    gap: 4px;
+  }
+  .universe-tabs button {
+    flex: 1;
+    padding: 5px 7px;
+    font-size: 11px;
+  }
+  .universe-tabs nx-floating-object {
+    width: 25px;
+    height: 25px;
+  }
+  .universe-pause {
+    font-size: 11px;
+    min-height: 40px;
+  }
+  .universe-field {
+    height: 270px;
+  }
+  .universe-footer {
+    padding: 16px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .universe-footer small {
+    font-size: 10px;
+  }
+  .field-caption {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+}

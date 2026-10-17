@@ -1,5 +1,6 @@
 <div
   class="app-shell"
+  [attr.data-theme]="themes.theme()"
   [attr.data-stage]="profiles.stage()"
   [class.motion-off]="!preferences.motion()"
 >
@@ -13,11 +14,22 @@
     [inert]="mobile() && !menuOpen()"
     aria-label="Navegación principal"
   >
-    <a routerLink="/" class="brand" (click)="menuOpen.set(false)"
-      ><span class="brand-symbol">n<span></span></span
-      ><span>Nexo<span class="brand-light">Aprende</span><small>EXPERIENCE</small></span></a
-    >
-    <span class="nav-caption">TU UNIVERSO</span>
+    <a routerLink="/" class="brand" (click)="menuOpen.set(false)">
+      @if (media.art.logo) {
+        <img
+          class="brand-image"
+          [src]="media.art.logo"
+          alt="NexoAprende Experience"
+          width="180"
+          height="60"
+        />
+      } @else {
+        <nx-brand-mark /><span
+          >Nexo<span class="brand-light">Aprende</span><small>EXPERIENCE</small></span
+        >
+      }
+    </a>
+    <span class="nav-caption">EXPLORA A TU MANERA</span>
     <nav aria-label="Tu universo">
       @for (item of mainNav; track item.path) {
         <a
@@ -79,6 +91,7 @@
         >
       </div>
       <div class="topbar-actions">
+        <nx-theme-toggle />
         <button
           class="motion-toggle"
           [attr.aria-label]="preferences.motion() ? 'Pausar animaciones' : 'Movimiento reducido'"

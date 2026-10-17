@@ -1,5 +1,7 @@
 # Verificación — Hito 1
 
+Registro histórico del primer hito. La verificación actual se documenta en [RENOVACION-MULTIMEDIA.md](RENOVACION-MULTIMEDIA.md).
+
 Fecha: 17 de octubre de 2026. Entorno: Windows, Node 24.20.0, npm 11.19.0, Angular y CLI local 22.2.3, TypeScript 6.0.3.
 
 ## Comprobaciones ejecutadas

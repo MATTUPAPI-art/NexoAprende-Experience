@@ -22,15 +22,13 @@ yarn-error.log
 
 # Visual Studio Code
 .vscode/*
-!.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-!.vscode/mcp.json
 .history/*
 
 # Miscellaneous
-/.angular/cache
+/.angular/
 .sass-cache/
 /connect.lock
 /coverage
@@ -50,3 +48,19 @@ Thumbs.db
 /playwright-report/
 /artifacts/
 *.log
+
+# Private reference material, local evidence and temporary delivery files
+/public/local/
+**/creceactivo-referencia.mp4
+*.bak
+*.tmp
+*.temp
+*.tsbuildinfo
+*.zip
+
+# Credentials and private keys
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json

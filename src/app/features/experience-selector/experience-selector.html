@@ -1,0 +1,110 @@
+<nx-page-heading
+  eyebrow="NO TODOS APRENDEMOS EN EL MISMO MUNDO"
+  title="Encuentra el lugar donde brillas."
+  description="Tres espacios con personalidad propia. Elige tu etapa y hazlo tuyo."
+/>
+<div class="world-options" aria-label="Elige una etapa">
+  @for (item of stages; track item.id) {
+    <button
+      type="button"
+      nxDepth
+      class="world-card"
+      [attr.data-world]="item.id"
+      [class.selected]="stage() === item.id"
+      [attr.aria-pressed]="stage() === item.id"
+      (click)="age.set(item.age)"
+    >
+      <div class="world-card-picture">
+        <nx-world-scene [stage]="item.id" [eager]="true" /><span
+          class="world-number"
+          aria-hidden="true"
+          >{{ item.number }}</span
+        ><span class="world-selected" aria-hidden="true"
+          ><nx-icon [name]="stage() === item.id ? 'check' : 'arrow'"
+        /></span>
+      </div>
+      <div class="world-card-copy">
+        <span class="world-photo" aria-hidden="true"
+          ><nx-stage-art [stage]="item.id" kind="photo"
+        /></span>
+        <div class="world-card-meta">
+          <strong [id]="'label-' + item.id">{{ item.label }}</strong
+          ><span [id]="'age-' + item.id">{{ item.range }}</span>
+        </div>
+        <h2 [id]="'title-' + item.id">{{ item.title }}</h2>
+        <span class="world-tag" aria-hidden="true">{{ item.tag }}</span>
+      </div>
+    </button>
+  }
+</div>
+<div class="selector-grid">
+  <form class="panel selector-form" (ngSubmit)="save()">
+    <span class="eyebrow">UN PAR DE DETALLES Y ESTAMOS</span>
+    <h2>Hagamos espacio para ti.</h2>
+    <div class="form-field">
+      <label for="name">Tu nombre o apodo</label
+      ><input
+        id="name"
+        name="name"
+        [ngModel]="name()"
+        (ngModelChange)="name.set($event)"
+        maxlength="24"
+        autocomplete="nickname"
+        placeholder="Por ejemplo, Alex"
+      /><small>Un apodo está perfecto. Este espacio es tuyo.</small>
+    </div>
+    <div class="form-field">
+      <label for="age"
+        >¿Cuántos años tienes? <strong class="selected-age">{{ age() }} años</strong></label
+      ><input
+        id="age"
+        type="range"
+        name="age"
+        min="5"
+        max="18"
+        step="1"
+        [ngModel]="age()"
+        (ngModelChange)="age.set(+$event)"
+        [attr.aria-valuetext]="age() + ' años'"
+      />
+      <div class="range-labels"><span>5 años</span><span>18 años</span></div>
+    </div>
+    <p class="small muted">La edad adapta el diseño; no es una evaluación de habilidades.</p>
+    <button type="submit" class="button button-primary save-experience">
+      Guardar y entrar a mi espacio<nx-icon name="arrow" />
+    </button>
+    <p class="privacy-note">
+      <nx-icon name="shield" />Tu perfil se guarda únicamente en este navegador.
+    </p>
+  </form>
+  <section class="experience-preview" [attr.data-preview]="stage()" aria-labelledby="preview-title">
+    <div class="preview-topline">
+      <span>ASÍ SE SENTIRÁ TU ESPACIO</span><span class="preview-dot"></span>
+    </div>
+    <div class="preview-content">
+      <span class="preview-world">{{ currentWorld().number }} / {{ stageLabel() }}</span>
+      <h2 id="preview-title">
+        {{
+          stage() === 'child'
+            ? '¡A crear, '
+            : stage() === 'teen'
+              ? 'Tu próximo paso, '
+              : 'Probemos algo, '
+        }}{{ name().trim() || 'Alex' }}.
+      </h2>
+      <p>{{ currentWorld().description }}</p>
+      <span class="preview-button"
+        >{{
+          stage() === 'child'
+            ? '¡Vamos a jugar!'
+            : stage() === 'teen'
+              ? 'Explorar mis retos'
+              : 'Comenzar mi aventura'
+        }}<nx-icon name="arrow"
+      /></span>
+    </div>
+    <div class="preview-art"><nx-world-scene [stage]="stage()" /></div>
+    <div class="preview-nexito"><nx-nexito mood="think" [stage]="stage()" /></div>
+    <span class="preview-caption">{{ age() }} años. Un mundo de posibilidades.</span>
+  </section>
+</div>

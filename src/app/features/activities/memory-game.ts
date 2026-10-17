@@ -14,6 +14,8 @@ import { PageHeadingComponent } from '../../shared/components/page-heading';
 import { IllustrationComponent } from '../../shared/components/illustration';
 import { IconComponent } from '../../shared/components/icon';
 import { MessageComponent } from '../../shared/components/message';
+import { NexitoComponent } from '../../shared/components/nexito';
+import { BrandMarkComponent } from '../../shared/components/brand-mark';
 
 @Component({
   selector: 'nx-memory-game',
@@ -23,6 +25,8 @@ import { MessageComponent } from '../../shared/components/message';
     IllustrationComponent,
     IconComponent,
     MessageComponent,
+    NexitoComponent,
+    BrandMarkComponent,
   ],
   templateUrl: './memory-game.html',
   styleUrl: './memory-game.scss',

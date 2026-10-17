@@ -1,4 +1,6 @@
 @use 'styles/tokens' as tokens;
+@use 'styles/art-direction' as art;
+@use 'styles/themes' as themes;
 @use '@fontsource-variable/nunito-sans';
 @use '@fontsource-variable/outfit';
 
@@ -922,3 +924,6 @@ main > router-outlet + * {
     font-size: 8px;
   }
 }
+
+@include art.styles;
+@include themes.styles;

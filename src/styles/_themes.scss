@@ -1,0 +1,543 @@
+@mixin styles {
+  :root {
+    --surface: #fff;
+    --surface-subtle: #f1f3fc;
+    --surface-raised: #fff;
+    --on-primary: #fff;
+    --universe-bg: #edf1ff;
+    --orbit-line: #6b70ac30;
+  }
+  .app-shell {
+    color: var(--text);
+    --surface: #fff;
+    --surface-subtle: #f1f3fc;
+    --surface-raised: #fff;
+    --on-primary: #fff;
+    --universe-bg: #edf1ff;
+    --orbit-line: #6b70ac30;
+    --universe-ink: #596b83;
+  }
+  .app-shell[data-stage='child'] {
+    --universe-bg: #e5f7ee;
+    --orbit-line: #387e6530;
+    --universe-ink: #3c6157;
+  }
+  .app-shell[data-stage='teen'] {
+    --universe-bg: #172744;
+    --orbit-line: #bacfff38;
+    --universe-ink: #d2dcf0;
+  }
+  .brand-image {
+    display: block;
+    width: 130px;
+    height: 66px;
+    object-fit: cover;
+  }
+  .app-shell .brand:has(.brand-image) {
+    width: 130px;
+    overflow: hidden;
+    border-radius: 13px;
+  }
+  .app-shell .brand {
+    min-height: 56px;
+  }
+  .app-shell .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      var(--world-surface) 12%,
+      color-mix(in srgb, var(--world-surface) 96%, transparent) 35%,
+      transparent 85%
+    );
+  }
+  .app-shell .hero > nx-world-scene img {
+    object-position: 75% center;
+  }
+  .app-shell .world-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      var(--world-surface) 15%,
+      color-mix(in srgb, var(--world-surface) 97%, transparent) 45%,
+      transparent 95%
+    );
+  }
+  .app-shell .world-banner-copy {
+    z-index: 2;
+  }
+  .app-shell .world-banner-friend {
+    z-index: 2;
+  }
+  .app-shell .world-photo {
+    float: right;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--surface);
+    margin: -5px -8px 5px 8px;
+    box-shadow: 0 5px 15px #10172b22;
+  }
+  .app-shell .world-photo nx-stage-art {
+    width: 100%;
+    height: 100%;
+  }
+  .app-shell .nexito-welcome {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    margin: 30px 0;
+    border-radius: 28px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .nexito-welcome img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .nexito-welcome > div {
+    padding: 35px;
+    align-self: center;
+  }
+  .nexito-welcome h2 {
+    font-size: 35px;
+    margin: 12px 0;
+  }
+  .nexito-welcome p {
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .app-shell[data-stage='teen'] .hero-friend {
+    width: 155px;
+    right: 6%;
+  }
+  .app-shell[data-stage='teen'] .friend-bubble {
+    display: none;
+  }
+  .app-shell[data-stage='teen'] .world-banner-friend {
+    width: 105px;
+  }
+  .app-shell[data-stage='teen'] .preview-nexito {
+    width: 95px;
+  }
+  .app-shell[data-stage='teen'] .nexito-body {
+    animation: none;
+  }
+  .app-shell[data-stage='teen'] .universe {
+    border-radius: 20px;
+  }
+  html[data-theme='night'] {
+    background: #10172b;
+    color-scheme: dark;
+  }
+  html[data-theme='night'] .app-shell[data-theme='night'] {
+    .sidebar-note {
+      background: var(--surface-subtle);
+      color: var(--muted);
+    }
+    .nav-caption,
+    .sidebar-version,
+    .sidebar-note p {
+      color: var(--muted);
+    }
+    .sidebar-note a {
+      color: var(--primary);
+    }
+    .sidebar nav[aria-label] > a {
+      color: var(--text);
+    }
+    --background: #10172b;
+    --surface: #1b2540;
+    --surface-subtle: #25314d;
+    --surface-raised: #25314d;
+    --text: #edf2ff;
+    --muted: #b9c7e0;
+    --border: #405071;
+    --primary: #bba8ff;
+    --soft-primary: #352e57;
+    --on-primary: #19142e;
+    --world-surface: #181e3a;
+    --world-ink: #f1f3ff;
+    --world-muted: #c3cee8;
+    --world-accent: #c6b1ff;
+    --world-border: #435074;
+    --universe-bg: #121a33;
+    --orbit-line: #d0c8ff32;
+    --universe-ink: #c3cee8;
+    --shadow: 0 10px 35px #050a1b44;
+    background: var(--background);
+    color: var(--text);
+  }
+  html[data-theme='night'] .app-shell[data-theme='night'][data-stage='child'] {
+    --primary: #8bdfc7;
+    --soft-primary: #1e4145;
+    --on-primary: #102e2c;
+    --world-surface: #12383c;
+    --world-accent: #9ae6ce;
+    --world-border: #376361;
+  }
+  html[data-theme='night'] .app-shell[data-theme='night'][data-stage='teen'] {
+    --primary: #9dc4ff;
+    --soft-primary: #263d60;
+    --on-primary: #132640;
+    --world-surface: #132744;
+    --world-accent: #8ee0d0;
+    --world-border: #36567b;
+  }
+  html[data-theme='night'] .app-shell[data-theme='night'] {
+    .sidebar,
+    .topbar,
+    .panel,
+    .stat-card,
+    .activity-card,
+    .dashboard-profile,
+    .results-dialog,
+    .filter-button,
+    .icon-button,
+    .button-secondary,
+    .experience-chip,
+    .professional-card,
+    .guide-modal,
+    .guide-dialog,
+    .dialog,
+    .modal,
+    .modal-content,
+    .game-stats,
+    .reading-text {
+      background: var(--surface);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .brand:has(.brand-image) {
+      background: #f5f4ff;
+    }
+    .sidebar nav > a,
+    .breadcrumb,
+    .profile-link,
+    .profile-link strong,
+    .footer,
+    .help-link,
+    .motion-toggle,
+    .button-secondary,
+    .link-back,
+    .activity-link,
+    .memory .activity-link,
+    .reading .activity-link {
+      color: var(--text);
+    }
+    .sidebar nav > a.active,
+    .sidebar nav > a:hover,
+    .motion-toggle,
+    .avatar,
+    .badge,
+    .badge-green,
+    .badge-warm,
+    .round-icon,
+    .catalog-note,
+    .game-friend,
+    .week-track,
+    .game-tip,
+    .result-stat,
+    .result-metric,
+    .result-summary,
+    .memory-status,
+    .intro-instructions,
+    .goal-box,
+    .recommendation,
+    .tutor-disclaimer,
+    .professional-disclaimer {
+      background: var(--surface-subtle);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .sidebar nav > a.active {
+      color: var(--primary);
+    }
+    p,
+    small,
+    .muted,
+    .stat-label,
+    .activity-meta,
+    .activity-body > p,
+    .card-kicker,
+    .section-description,
+    .game-friend p,
+    .result-caption,
+    .goal-title span,
+    .week-chart,
+    .privacy-note,
+    .range-labels,
+    .instruction-item p {
+      color: var(--muted);
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    strong,
+    label,
+    .stat-value,
+    .goal-number,
+    .selected-age,
+    .activity-body h3,
+    .goal-title strong {
+      color: var(--text);
+    }
+    .text-link,
+    .eyebrow,
+    .activity-link,
+    .result-stat strong,
+    .score-value {
+      color: var(--primary);
+    }
+    input:not([type='range']),
+    select,
+    textarea {
+      background: var(--surface-subtle);
+      border-color: var(--border);
+      color: var(--text);
+    }
+    input::placeholder {
+      color: var(--muted);
+    }
+    input[type='range'] {
+      accent-color: var(--primary);
+    }
+    .button-primary,
+    .filter-button.selected {
+      color: var(--on-primary);
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+    .button-primary:hover {
+      color: var(--on-primary);
+      background: var(--primary);
+    }
+    .button-primary nx-icon {
+      color: var(--on-primary);
+    }
+    .notice,
+    .notice-demo {
+      color: var(--muted);
+      background: var(--surface-subtle);
+      border-color: var(--border);
+    }
+    .notice strong {
+      color: var(--text);
+    }
+    .progress-track,
+    .week-track {
+      background: var(--surface-subtle);
+    }
+    .progress-track > span,
+    .week-track i {
+      background: var(--primary);
+    }
+    .stat-card:nth-child(n),
+    .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-card {
+      background: var(--surface);
+      border-color: var(--border);
+    }
+    .activity-art {
+      background: #213b3d;
+    }
+    .activity-card.memory .activity-art {
+      background: #3a2e57;
+    }
+    .activity-card.reading .activity-art {
+      background: #493b2a;
+    }
+    .activity-status,
+    .activity-area {
+      background: var(--surface);
+      color: var(--text);
+    }
+    .activity-card.memory .activity-area,
+    .activity-card.reading .activity-area {
+      color: var(--text);
+    }
+    .activity-index {
+      color: #ffffff80;
+    }
+    .intro-illustration,
+    .memory-tile {
+      background: #40385c;
+      border-color: #8879a7;
+    }
+    .memory-tile.is-flipped {
+      background: #f5edda !important;
+      color: #25203c;
+    }
+    .memory-tile.is-matched {
+      background: #d7efd9 !important;
+      border-color: #78ab89;
+    }
+    .memory-tile.is-matched .tile-front {
+      color: #264e36;
+    }
+    .tile-back {
+      color: #e8ddff;
+    }
+    .game-toolbar,
+    .game-board,
+    .game-panel,
+    .result-stats,
+    .result-tip,
+    .paused-notice,
+    .empty-state,
+    .preview-art,
+    .story-panel {
+      background: var(--surface-subtle);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .family-heading,
+    .professional-heading {
+      background: var(--surface);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .family-heading .eyebrow,
+    .professional-heading .eyebrow {
+      color: var(--primary);
+    }
+    .world-card {
+      background: var(--surface);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .world-card.selected {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--soft-primary);
+    }
+    .world-card-meta span,
+    .world-tag {
+      background: var(--surface-subtle);
+      color: var(--muted);
+    }
+    .world-link > span {
+      background: var(--surface);
+      color: var(--text);
+    }
+    .together-card,
+    .together-links a,
+    .friend-bubble,
+    .nexito-action {
+      background: var(--surface-subtle);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .friend-bubble small {
+      color: var(--muted);
+    }
+    .benefits-strip {
+      color: var(--muted);
+      border-color: var(--border);
+    }
+    .benefits-strip > span,
+    .profile-link small,
+    .breadcrumb strong,
+    .together-card p,
+    .together-card .eyebrow {
+      color: var(--muted);
+    }
+    th {
+      color: var(--text);
+      background: var(--surface-subtle);
+    }
+    td {
+      color: var(--text);
+      border-color: var(--border);
+    }
+    details,
+    summary {
+      background: var(--surface);
+      border-color: var(--border);
+      color: var(--text);
+    }
+    .intro-caption {
+      color: var(--muted);
+    }
+    .experience-preview {
+      background: var(--world-surface);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .preview-topline,
+    .preview-world {
+      color: var(--muted);
+      border-color: var(--border);
+    }
+    .preview-content p {
+      color: var(--muted);
+    }
+    .preview-caption {
+      background: var(--surface);
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 10px;
+    }
+    .instruction-note,
+    .paused-message,
+    .result-numbers,
+    .result-numbers > span,
+    .saved-note,
+    .game-stats > span,
+    .finished-inline {
+      background: var(--surface-subtle);
+      color: var(--muted);
+      border-color: var(--border);
+    }
+    .result-numbers strong,
+    .game-stats strong {
+      color: var(--primary);
+    }
+    a:hover {
+      color: var(--primary);
+    }
+    :focus-visible {
+      outline-color: #f4cf7c;
+    }
+    button:disabled {
+      opacity: 0.65;
+    }
+  }
+  @media (max-width: 680px) {
+    .app-shell .hero::after {
+      background: linear-gradient(180deg, var(--world-surface) 52%, transparent 95%);
+    }
+    .app-shell .world-banner::after {
+      background: linear-gradient(
+        90deg,
+        var(--world-surface) 25%,
+        color-mix(in srgb, var(--world-surface) 94%, transparent) 65%,
+        transparent
+      );
+    }
+    .app-shell .nexito-welcome {
+      grid-template-columns: 1fr;
+    }
+    .nexito-welcome > div {
+      padding: 25px;
+    }
+    .nexito-welcome h2 {
+      font-size: 28px;
+    }
+    .app-shell[data-stage='teen'] .hero-friend {
+      width: 130px;
+      left: 6%;
+      right: auto;
+    }
+    .app-shell .topbar-actions {
+      gap: 7px;
+    }
+  }
+}

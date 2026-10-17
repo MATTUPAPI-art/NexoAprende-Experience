@@ -1,0 +1,621 @@
+@mixin styles {
+  body {
+    background: #f6f4ee;
+  }
+  .app-shell .section-arrived {
+    animation: section-arrive 0.6s ease-out both;
+  }
+  @keyframes section-arrive {
+    from {
+      opacity: 0.4;
+      translate: 0 12px;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+  .app-shell[data-stage='teen'] .section-arrived {
+    animation-duration: 0.25s;
+  }
+  .app-shell {
+    --text: #302e35;
+    --muted: #69636c;
+    --border: #dedbd2;
+    --primary: #6946a5;
+    --radius: 11px;
+    --radius-lg: 15px;
+    --shadow: 0 6px 20px #342f2408;
+    --cover-base: #262039;
+    background: #f6f4ee;
+  }
+  .app-shell[data-stage='child'] {
+    --primary: #8b472b;
+    --radius: 23px;
+    --radius-lg: 30px;
+    --border: #e5d4ae;
+    --cover-base: #3f2e29;
+    background: #fff9e9;
+    --font-heading: 'Nunito Sans Variable', sans-serif;
+  }
+  .app-shell[data-stage='junior'] {
+    --primary: #6946a5;
+    --cover-base: #262039;
+    background: #f6f4ee;
+  }
+  .app-shell[data-stage='teen'] {
+    --primary: #285d52;
+    --radius: 4px;
+    --radius-lg: 5px;
+    --border: #cfd7d1;
+    --cover-base: #183d48;
+    background: #eff2ec;
+    --font-heading: 'Outfit Variable', sans-serif;
+  }
+  .app-shell[data-stage='teen'] .hero,
+  .app-shell[data-stage='teen'] nx-multimedia-background {
+    background: #183d48;
+  }
+  .app-shell[data-stage='teen'] .hero {
+    border-radius: 3px;
+  }
+  .app-shell[data-stage='teen'] .hero h2 {
+    font-weight: 400;
+    letter-spacing: -2px;
+  }
+  .app-shell[data-stage='teen'] .hero h2 span {
+    color: #dce4b9;
+  }
+  .app-shell[data-stage='teen'] .hero h2 span::after {
+    display: none;
+  }
+  .app-shell[data-stage='teen'] .hero-visual {
+    transform: none;
+  }
+  .app-shell[data-stage='teen'] .hero-visual nx-stage-art {
+    clip-path: inset(0);
+    transform: none;
+    border: 10px solid #e7e8d3;
+  }
+  .app-shell[data-stage='child'] .hero {
+    border-radius: 28px 28px 85px 28px;
+  }
+  .app-shell[data-stage='child'] .hero h2 {
+    font-weight: 850;
+    letter-spacing: -2px;
+  }
+  .app-shell[data-stage='child'] .hero h2 span {
+    color: #f9d564;
+  }
+  .app-shell[data-stage='child'] .hero h2 span::after {
+    border-color: #f9d564;
+  }
+  .app-shell .page-heading {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 27px;
+  }
+  .app-shell .page-heading h1 {
+    font-size: 38px;
+    letter-spacing: -1.2px;
+    font-weight: 500;
+    line-height: 1.12;
+    max-width: 750px;
+  }
+  .app-shell .page-heading .eyebrow {
+    color: var(--primary);
+  }
+  .app-shell .button-primary {
+    background: var(--primary);
+    border-radius: var(--radius);
+    box-shadow: 0 3px 0 #29233125;
+  }
+  .app-shell .button-primary:hover {
+    filter: brightness(0.92);
+    color: #fff;
+    box-shadow: 0 6px 0 #29233120;
+    transform: translateY(-3px);
+  }
+  .app-shell .button-cream {
+    background: #d9ed99;
+    color: #25312a;
+    border-radius: 4px;
+    box-shadow: 3px 4px 0 #08080d59;
+    font-size: 12px;
+    padding: 14px 21px;
+  }
+  .app-shell .button-cream:hover {
+    background: #e8f6bf;
+    color: #25312a;
+  }
+  .app-shell .button-secondary {
+    background: #fffdf7;
+    border-color: var(--border);
+    border-radius: var(--radius);
+  }
+  .app-shell .panel {
+    background: #fffdf8;
+    box-shadow: none;
+    border-color: var(--border);
+  }
+  .app-shell .eyebrow {
+    font-size: 9px;
+    letter-spacing: 1.6px;
+  }
+  .app-shell .badge {
+    background: #eae2f6;
+    color: #634889;
+    border-radius: 4px;
+  }
+  .app-shell .badge-green {
+    background: #dae8d2;
+    color: #39572e;
+  }
+  .app-shell .badge-warm {
+    background: #f5e8bc;
+    color: #72521b;
+  }
+  .app-shell .progress-track {
+    background: #e6e2d8;
+    height: 9px;
+  }
+  .app-shell .progress-track > span {
+    background: var(--primary);
+  }
+  .app-shell .notice {
+    background: #ecefe6;
+    border-color: #d8dece;
+    color: #4b5845;
+    border-radius: 4px;
+  }
+  .app-shell .notice-demo {
+    background: #efe9df;
+    border-color: #dfd3c1;
+    color: #61523d;
+  }
+  .app-shell .notice-demo strong {
+    color: #665036;
+  }
+  .app-shell .activity-grid {
+    gap: 23px;
+  }
+  .app-shell .activity-card {
+    border-radius: 4px;
+    box-shadow: none;
+    background: #fffdf8;
+    border: 1px solid var(--border);
+    transform: perspective(1000px) rotateX(var(--depth-y, 0deg)) rotateY(var(--depth-x, 0deg));
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.25s ease;
+  }
+  .app-shell .activity-card:hover {
+    box-shadow: 6px 9px 0 #d9d2c3;
+  }
+  .app-shell .activity-card.attention {
+    border-radius: 22px 22px 48px 22px;
+  }
+  .app-shell .activity-card.attention .activity-art {
+    background: #e3e9c8;
+    border-radius: 0 0 42% 0;
+  }
+  .app-shell .activity-card.memory .activity-art {
+    background: #d4c4ef;
+  }
+  .app-shell .activity-card.reading .activity-art {
+    background: #e3dcc6;
+  }
+  .app-shell .activity-art {
+    height: 190px;
+  }
+  .app-shell .activity-art nx-stage-art {
+    height: 100%;
+  }
+  .app-shell .activity-art nx-illustration {
+    height: 100%;
+    width: 100%;
+    transform: translateY(3px) scale(0.95);
+  }
+  .app-shell .activity-index {
+    position: absolute;
+    right: 16px;
+    top: 15px;
+    font-family: var(--font-heading);
+    font-size: 26px;
+    color: #3c2a5270;
+    line-height: 1;
+  }
+  .app-shell .activity-area {
+    top: 16px;
+    left: 16px;
+    background: #fffdf1;
+    color: #3f573b;
+    border-radius: 3px;
+    font-size: 10px;
+    padding: 7px 9px;
+  }
+  .app-shell .activity-card.memory .activity-area {
+    color: #5a3c80;
+  }
+  .app-shell .activity-card.reading .activity-area {
+    color: #6a5227;
+  }
+  .app-shell .activity-status {
+    background: #fffdf3;
+    color: #4b503f;
+    font-size: 9px;
+    bottom: 12px;
+  }
+  .app-shell .activity-card.attention .activity-status {
+    right: auto;
+    left: 16px;
+  }
+  .app-shell .sidebar-note > p {
+    color: #555d47;
+  }
+  .app-shell .activity-body {
+    padding: 23px 21px 0;
+  }
+  .app-shell .activity-body h3 {
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.18;
+    margin: 9px 0 12px;
+  }
+  .app-shell .card-kicker {
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .app-shell .activity-body > p {
+    font-size: 12px;
+    line-height: 1.8;
+    min-height: 44px;
+    margin-bottom: 21px;
+  }
+  .app-shell .activity-meta {
+    font-size: 11px;
+  }
+  .app-shell .activity-link {
+    font-size: 12px;
+    padding: 17px 0;
+    color: #45623e;
+  }
+  .app-shell .memory .activity-link {
+    color: #6946a5;
+  }
+  .app-shell .reading .activity-link {
+    color: #735023;
+  }
+  .app-shell .catalog-grid.is-all {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 24px 0 0;
+  }
+  .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) {
+    grid-column: 1/-1;
+    grid-row: 1;
+  }
+  .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 310px;
+    border-color: #c5b2e2;
+    background: #eee7fa;
+  }
+  .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-art {
+    height: 100%;
+    min-height: 310px;
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-body {
+    padding: 35px 31px 0;
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) h3 {
+    font-size: 35px;
+    letter-spacing: -1px;
+    max-width: 280px;
+  }
+  .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-body > p {
+    font-size: 14px;
+    max-width: 320px;
+  }
+  .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-index {
+    font-size: 52px;
+    color: #6750844d;
+  }
+  .app-shell .filter-button {
+    border-radius: 25px;
+    background: #fffdf7;
+  }
+  .app-shell .filter-button.selected {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+  .app-shell .dashboard-profile {
+    margin-top: 25px;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    padding: 21px 0;
+    background: transparent;
+    border-radius: 0;
+  }
+  .app-shell .week-track {
+    background: #ece4f2;
+    width: 29px;
+    border-radius: 3px;
+  }
+  .app-shell .week-track i {
+    background: #baa0d2;
+    border-radius: 3px;
+  }
+  .app-shell .week-chart > div:nth-child(4) i {
+    background: var(--primary);
+  }
+  .app-shell .goal-number {
+    color: var(--primary);
+  }
+  .app-shell .companion-heading {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    min-height: 275px;
+    margin: 0 0 28px;
+    overflow: hidden;
+    border-radius: 3px;
+  }
+  .app-shell .companion-heading > div:first-child {
+    padding: 32px 37px;
+  }
+  .app-shell .companion-heading h2 {
+    font-size: 43px;
+    line-height: 1.08;
+    margin: 22px 0 18px;
+    letter-spacing: -1.5px;
+  }
+  .app-shell .companion-heading p {
+    font-size: 13px;
+    line-height: 1.8;
+    max-width: 400px;
+    margin: 0;
+  }
+  .app-shell .companion-photo {
+    min-width: 0;
+  }
+  .app-shell .family-heading {
+    background: #f1dda0;
+    color: #5b3e20;
+    border-radius: 3px 3px 60px 3px;
+  }
+  .app-shell .family-heading .eyebrow {
+    color: #6c5228;
+  }
+  .app-shell .professional-heading {
+    background: #183d48;
+    color: #f1eedc;
+  }
+  .app-shell .professional-heading .eyebrow {
+    color: #cee1b5;
+  }
+  .app-shell .professional-heading .companion-photo {
+    padding: 15px;
+  }
+  .app-shell .progress-page .stat-grid {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    gap: 0;
+    margin: 30px 0;
+  }
+  .app-shell .progress-page .stat-card {
+    border: 0;
+    border-right: 1px solid var(--border);
+    border-radius: 0;
+    background: transparent;
+    padding: 25px;
+  }
+  .app-shell .progress-page .stat-card:last-child {
+    border-right: 0;
+  }
+  .app-shell .progress-page .stat-value {
+    font-size: 43px;
+    line-height: 1.1;
+    color: var(--primary);
+    margin: 20px 0 8px;
+  }
+  .app-shell .progress-page .stat-value.time-total {
+    font-size: 28px;
+  }
+  .app-shell .profile-row .avatar {
+    border-radius: 12px;
+    background: #e9e0cf;
+    color: #6a512f;
+  }
+  .app-shell .intro-illustration {
+    background: #d9c9ee;
+    border-color: #c9b1e5;
+    border-radius: 4px 4px 50px 4px;
+  }
+  .app-shell .intro-instructions {
+    border-top: 4px solid var(--primary);
+  }
+  .app-shell .memory-tile {
+    background: #d9c9ed;
+    border-color: #bca5d9;
+    border-radius: 8px;
+  }
+  .app-shell .memory-tile.is-matched {
+    animation: pair-found 0.48s ease-out;
+  }
+  .app-shell .tile-back > span {
+    border-style: dashed;
+    border-color: #9475b3;
+    outline: none;
+    color: #715191;
+  }
+  .app-shell .results-dialog {
+    border-radius: 6px 6px 36px 6px;
+    border-color: #bba982;
+    background: #fff9e9;
+  }
+  .app-shell .results-inner .celebration {
+    position: relative;
+  }
+  .app-shell .results-inner .celebration::before,
+  .app-shell .results-inner .celebration::after {
+    content: '';
+    width: 7px;
+    height: 21px;
+    background: #a783cc;
+    position: absolute;
+    left: 22%;
+    top: 20px;
+    transform: rotate(-25deg);
+    animation: celebrate-paper 1.2s ease-out both;
+  }
+  .app-shell .results-inner .celebration::after {
+    left: auto;
+    right: 20%;
+    background: #8ba86b;
+    transform: rotate(25deg);
+    animation-delay: 0.15s;
+  }
+  .app-shell .motion-off [nxDepth] {
+    transform: none !important;
+  }
+  .app-shell .motion-off .world-link:hover {
+    transform: none;
+  }
+  @keyframes pair-found {
+    0% {
+      transform: scale(0.94);
+    }
+    55% {
+      transform: scale(1.045);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes celebrate-paper {
+    0% {
+      opacity: 0;
+      translate: 0 16px;
+    }
+    50% {
+      opacity: 1;
+      translate: 0 -9px;
+    }
+    100% {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .app-shell [nxDepth] {
+      transform: none !important;
+    }
+    .app-shell .world-link:hover {
+      transform: none;
+    }
+  }
+  @media (max-width: 1100px) {
+    .app-shell .activity-grid {
+      gap: 16px;
+    }
+    .app-shell .activity-body {
+      padding: 19px 17px 0;
+    }
+    .app-shell .activity-body h3 {
+      font-size: 19px;
+    }
+    .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-body {
+      padding: 27px 23px 0;
+    }
+    .app-shell .companion-heading h2 {
+      font-size: 36px;
+    }
+  }
+  @media (max-width: 680px) {
+    .app-shell .page-heading h1 {
+      font-size: 32px;
+    }
+    .app-shell .page-heading p {
+      font-size: 13px;
+    }
+    .app-shell .activity-grid {
+      gap: 22px;
+    }
+    .app-shell .activity-art {
+      height: 210px;
+    }
+    .app-shell .activity-body {
+      padding: 23px 22px 0;
+    }
+    .app-shell .activity-body h3 {
+      font-size: 25px;
+    }
+    .app-shell .activity-body > p {
+      font-size: 13px;
+      min-height: 0;
+    }
+    .app-shell .catalog-grid.is-all {
+      grid-template-columns: 1fr;
+    }
+    .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-card {
+      display: flex;
+    }
+    .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-art {
+      min-height: 215px;
+      height: 215px;
+      order: 0;
+    }
+    .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) .activity-body {
+      padding: 25px 23px 0;
+      order: 1;
+    }
+    .app-shell .catalog-grid.is-all nx-activity-card:nth-child(2) h3 {
+      font-size: 30px;
+    }
+    .app-shell .companion-heading {
+      grid-template-columns: 1fr 30%;
+      min-height: 280px;
+    }
+    .app-shell .companion-heading > div:first-child {
+      padding: 26px 24px;
+    }
+    .app-shell .companion-heading h2 {
+      font-size: 33px;
+    }
+    .app-shell .companion-heading p {
+      font-size: 12px;
+    }
+    .app-shell .companion-photo nx-stage-art {
+      width: 200%;
+      margin-left: -50%;
+    }
+    .app-shell .professional-heading .companion-photo {
+      padding: 0;
+    }
+    .app-shell .progress-page .stat-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .app-shell .progress-page .stat-card {
+      border-bottom: 1px solid var(--border);
+      padding: 22px 14px;
+    }
+    .app-shell .progress-page .stat-card:nth-child(2) {
+      border-right: 0;
+    }
+    .app-shell .progress-page .stat-value {
+      font-size: 38px;
+    }
+    .app-shell .progress-page .stat-value.time-total {
+      font-size: 24px;
+    }
+    .app-shell .world-card {
+      transform: none;
+    }
+  }
+}

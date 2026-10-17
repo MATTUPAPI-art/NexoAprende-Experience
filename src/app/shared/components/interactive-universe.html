@@ -1,0 +1,83 @@
+<section class="universe" aria-labelledby="universe-title">
+  <div class="universe-heading">
+    <div>
+      <span class="eyebrow">UN RECREO PARA TU CURIOSIDAD</span>
+      <h2 id="universe-title">Un universo en tus manos.</h2>
+    </div>
+    <span class="universe-label">EXPLORA · ARRASTRA · LANZA</span>
+  </div>
+  <div class="universe-toolbar">
+    <div class="universe-tabs" role="group" aria-label="Objetos del universo">
+      @for (item of categories; track item.id) {
+        <button [attr.aria-pressed]="category() === item.id" (click)="choose(item.id)">
+          <nx-floating-object
+            [category]="item.id"
+            [index]="item.id === 'animals' ? 2 : item.id === 'balls' ? 1 : 1"
+          />{{ item.label }}
+        </button>
+      }
+    </div>
+    <button
+      class="universe-pause"
+      (click)="paused.set(!paused())"
+      [disabled]="!preferences.motion()"
+      [attr.aria-pressed]="paused() || !preferences.motion()"
+    >
+      <nx-icon [name]="paused() || !preferences.motion() ? 'play' : 'pause'" />{{
+        !preferences.motion()
+          ? 'Universo estático'
+          : paused()
+            ? 'Reanudar universo'
+            : 'Pausar universo'
+      }}
+    </button>
+  </div>
+  <div
+    #field
+    class="universe-field"
+    [attr.data-category]="category()"
+    [attr.data-running]="preferences.motion() && !paused()"
+    aria-label="Escenario para arrastrar y lanzar"
+    aria-describedby="universe-help"
+  >
+    <div class="universe-orbit orbit-one" aria-hidden="true"></div>
+    <div class="universe-orbit orbit-two" aria-hidden="true"></div>
+    <span class="field-caption" aria-hidden="true">¿HASTA DÓNDE LLEGA TU IMAGINACIÓN?</span>
+    @for (body of bodies(); track body.id) {
+      <button
+        class="floating-body"
+        [style.width.px]="body.radius * 2"
+        [style.height.px]="body.radius * 2"
+        [attr.aria-label]="
+          names[category()][body.id] + ': usa flechas para mover y Enter para lanzar'
+        "
+        (pointerdown)="down($event, body)"
+        (pointermove)="move($event)"
+        (pointerup)="up($event)"
+        (pointercancel)="up($event, true)"
+        (lostpointercapture)="up($event, true)"
+        (keydown)="key($event, body)"
+        (blur)="cancelKey()"
+      >
+        <nx-floating-object [category]="category()" [index]="body.id" />
+      </button>
+    }
+  </div>
+  <div class="universe-footer">
+    <p id="universe-help">
+      Arrastra y suelta. Con teclado: flechas y Enter.<small
+        >Un recreo libre. Los lanzamientos no cuentan como resultados educativos.</small
+      >
+    </p>
+    <div class="throw-controls">
+      <span class="throw-counter" role="status" aria-live="polite"
+        >Lanzamientos: {{ throws() }}
+        @for (point of bonus() ? [throws()] : []; track point) {
+          <span class="throw-bonus" aria-hidden="true">+1</span>
+        }</span
+      ><button class="universe-reset" (click)="reset()" aria-label="Reiniciar lanzamientos">
+        <nx-icon name="reset" />
+      </button>
+    </div>
+  </div>
+</section>

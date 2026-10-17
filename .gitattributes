@@ -1,3 +1,12 @@
 * text=auto eol=lf
 *.ico binary
 *.woff2 binary
+*.png binary
+*.jpg binary
+*.webp binary
+*.mp4 binary
+*.webm binary
+
+# Local instructions are never part of source archives.
+/artifacts export-ignore
+/public/local export-ignore

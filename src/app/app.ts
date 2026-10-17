@@ -6,15 +6,28 @@ import { ProfileService } from './core/services/profile.service';
 import { PreferenceService } from './core/services/preference.service';
 import { StorageService } from './core/services/storage.service';
 import { IconComponent } from './shared/components/icon';
+import { BrandMarkComponent } from './shared/components/brand-mark';
+import { ThemeService } from './core/services/theme.service';
+import { ThemeToggleComponent } from './shared/components/theme-toggle';
+import { MEDIA } from './core/constants/media-manifest';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, IconComponent],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    IconComponent,
+    BrandMarkComponent,
+    ThemeToggleComponent,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   host: { '(window:keydown)': 'handleKey($event)' },
 })
 export class App {
+  readonly themes = inject(ThemeService);
+  readonly media = MEDIA;
   readonly profiles = inject(ProfileService);
   readonly preferences = inject(PreferenceService);
   readonly storage = inject(StorageService);

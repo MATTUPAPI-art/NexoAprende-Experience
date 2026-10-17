@@ -6,16 +6,28 @@ import { ProgressService } from '../../core/services/progress.service';
 import { PageHeadingComponent } from '../../shared/components/page-heading';
 import { MessageComponent } from '../../shared/components/message';
 import { IconComponent } from '../../shared/components/icon';
+import { StageArtComponent } from '../../shared/components/stage-art';
 
 @Component({
   selector: 'nx-tutor-demo',
-  imports: [RouterLink, PageHeadingComponent, MessageComponent, IconComponent],
+  imports: [RouterLink, PageHeadingComponent, MessageComponent, IconComponent, StageArtComponent],
   template: `
     <nx-page-heading
       eyebrow="APRENDEMOS EN EQUIPO"
       title="Acompañar también es aprender."
       description="Un primer vistazo al espacio de las familias y personas que acompañan."
     />
+    <section class="companion-heading family-heading">
+      <div>
+        <span class="eyebrow">CUADERNO PARA ACOMPAÑAR / 01</span>
+        <h2>Estar cerca.<br />Dejar espacio.</h2>
+        <p>La mejor pregunta a veces es: ¿qué descubriste hoy?</p>
+      </div>
+      <figure class="companion-photo">
+        <nx-stage-art stage="child" kind="photo" [eager]="true" />
+        <figcaption>El aprendizaje también se comparte.</figcaption>
+      </figure>
+    </section>
     <nx-message [demo]="true" title="Panel del tutor · Demostración"
       >Los perfiles y vínculos son ejemplos sin cuentas ni autorización real. Solo el resumen de
       {{ profiles.profile().name }} utiliza partidas locales completadas.</nx-message

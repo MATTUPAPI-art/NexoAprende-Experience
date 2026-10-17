@@ -1,0 +1,414 @@
+:host {
+  display: block;
+}
+.world-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 30px 0 35px;
+}
+.world-card {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  border: 2px solid #d9e4ed;
+  border-radius: 27px;
+  background: #fff;
+  text-align: left;
+  color: #31465f;
+  transform: perspective(900px) rotateX(var(--depth-y, 0deg)) rotateY(var(--depth-x, 0deg));
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.2s ease;
+}
+.world-card.selected {
+  border-color: #7c62be;
+  box-shadow:
+    0 0 0 4px #9a80d91c,
+    0 10px 25px #6a4b9c14;
+}
+.world-card:hover {
+  box-shadow: 0 12px 26px #335d7b1a;
+}
+.world-card-picture {
+  height: 215px;
+  position: relative;
+  overflow: hidden;
+  background: #dff6ff;
+}
+.world-card-picture nx-world-scene {
+  position: absolute;
+  inset: 0;
+  width: 190%;
+  left: -90%;
+}
+.world-number {
+  position: absolute;
+  top: 15px;
+  left: 16px;
+  background: #ffffffef;
+  color: #354f69;
+  display: grid;
+  place-items: center;
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  font-family: var(--font-heading);
+  font-size: 11px;
+}
+.world-selected {
+  position: absolute;
+  right: 17px;
+  bottom: 17px;
+  background: #ffffffed;
+  color: #53619b;
+  display: grid;
+  place-items: center;
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  box-shadow: 0 4px 9px #223e5d14;
+}
+.world-selected nx-icon {
+  width: 18px;
+  height: 18px;
+}
+.world-card-copy {
+  padding: 23px 24px 25px;
+}
+.world-card-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 9px;
+  font-size: 11px;
+  color: #516f7d;
+}
+.world-card-meta > span {
+  font-size: 10px;
+}
+.world-card h2 {
+  font-size: 27px;
+  line-height: 1.15;
+  margin: 20px 0 24px;
+  max-width: 300px;
+  min-height: 62px;
+  letter-spacing: -0.8px;
+  font-weight: 550;
+}
+.world-tag {
+  font-size: 7px;
+  letter-spacing: 1px;
+  font-weight: 850;
+  line-height: 1.8;
+}
+.world-card[data-world='child'] {
+  background: #f2fcf9;
+  border-color: #cbe7dc;
+  border-radius: 36px 26px 40px 26px;
+  color: #2f625c;
+}
+.world-card[data-world='child'].selected {
+  border-color: #438b7a;
+  box-shadow: 0 0 0 4px #50967f18;
+}
+.world-card[data-world='child'] h2 {
+  font-family: 'Nunito Sans Variable', sans-serif;
+  font-weight: 850;
+}
+.world-card[data-world='junior'] {
+  background: #f6f1ff;
+  border-color: #ddd1ef;
+  color: #514173;
+}
+.world-card[data-world='junior'] .world-card-meta {
+  color: #675c86;
+}
+.world-card[data-world='teen'] {
+  background: #142443;
+  border-color: #28436c;
+  color: #f0f6ff;
+  border-radius: 22px;
+}
+.world-card[data-world='teen'] .world-card-meta,
+.world-card[data-world='teen'] .world-tag {
+  color: #bdd6e8;
+}
+.world-card[data-world='teen'].selected {
+  border-color: #79a4b1;
+  box-shadow: 0 0 0 4px #6f9ea521;
+}
+.selector-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+.selector-form {
+  padding: 32px;
+}
+.selector-form h2 {
+  font-size: 30px;
+  margin: 14px 0 27px;
+}
+.selected-age {
+  float: right;
+  color: var(--primary);
+  font-size: 16px;
+}
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+}
+.save-experience {
+  width: 100%;
+  margin-top: 11px;
+}
+.privacy-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 10px;
+  color: var(--muted);
+  margin: 20px 0 0;
+}
+.privacy-note nx-icon {
+  width: 14px;
+  height: 14px;
+}
+.experience-preview {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #eeeaff;
+  border: 1px solid #daceee;
+  color: #473b6a;
+  border-radius: 28px;
+  min-height: 500px;
+}
+.preview-topline {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 8px;
+  letter-spacing: 1px;
+  font-weight: 850;
+  padding: 23px 28px;
+  border-bottom: 1px solid #4b3c6e20;
+}
+.preview-dot {
+  width: 6px;
+  height: 6px;
+  background: #8b68c9;
+  border-radius: 50%;
+}
+.preview-content {
+  position: relative;
+  z-index: 2;
+  padding: 28px 28px 0;
+  max-width: 100%;
+}
+.preview-world {
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 1px;
+}
+.preview-content h2 {
+  font-size: 35px;
+  line-height: 1.12;
+  margin: 18px 0 16px;
+  max-width: 430px;
+}
+.preview-content p {
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 345px;
+  margin: 0;
+}
+.preview-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 44px;
+  padding: 11px 17px;
+  font-size: 11px;
+  font-weight: 850;
+  border-radius: 20px;
+  background: #6d51ad;
+  color: #fff;
+  box-shadow: 0 3px 0 #573e8625;
+  margin-top: 24px;
+}
+.preview-button nx-icon {
+  width: 15px;
+  height: 15px;
+}
+.preview-art {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.65;
+  mask-image: linear-gradient(180deg, transparent 0%, transparent 52%, #000 75%);
+}
+.preview-art nx-world-scene {
+  width: 165%;
+  height: 100%;
+  margin-left: -65%;
+}
+.preview-nexito {
+  width: 135px;
+  margin: 2px 19px -4px auto;
+  position: relative;
+  z-index: 2;
+}
+.preview-nexito nx-nexito {
+  width: 100%;
+}
+.preview-caption {
+  position: relative;
+  font-size: 10px;
+  margin: -7px 28px 22px;
+  z-index: 2;
+  max-width: 70%;
+}
+.experience-preview[data-preview='child'] {
+  background: #dff6ff;
+  color: #305b6b;
+  border-color: #c4e4ec;
+  border-radius: 33px;
+}
+.experience-preview[data-preview='child'] h2 {
+  font-family: 'Nunito Sans Variable', sans-serif;
+  font-weight: 850;
+}
+.experience-preview[data-preview='child'] .preview-button {
+  background: #2a796e;
+}
+.experience-preview[data-preview='child'] .preview-dot {
+  background: #448e7e;
+}
+.experience-preview[data-preview='teen'] {
+  background: #142443;
+  color: #eff5ff;
+  border-color: #29466f;
+  border-radius: 21px;
+}
+.experience-preview[data-preview='teen'] .preview-art {
+  opacity: 0.5;
+}
+.experience-preview[data-preview='teen'] .preview-topline {
+  border-color: #98bad133;
+}
+.experience-preview[data-preview='teen'] .preview-dot {
+  background: #9ad5d0;
+}
+.experience-preview[data-preview='teen'] .preview-button {
+  background: #b8e5dd;
+  color: #203e57;
+}
+.experience-preview[data-preview='teen'] p {
+  color: #d0dfec;
+}
+@media (max-width: 960px) {
+  .world-options {
+    gap: 16px;
+  }
+  .world-card-picture {
+    height: 180px;
+  }
+  .world-card-copy {
+    padding: 21px 17px;
+  }
+  .world-card h2 {
+    font-size: 23px;
+  }
+  .world-tag {
+    font-size: 6px;
+    letter-spacing: 0.5px;
+  }
+  .selector-form {
+    padding: 25px;
+  }
+  .preview-content h2 {
+    font-size: 31px;
+  }
+}
+@media (max-width: 680px) {
+  .world-options {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 26px;
+  }
+  .world-card {
+    display: grid;
+    grid-template-columns: 43% 1fr;
+    min-height: 204px;
+  }
+  .world-card-picture {
+    height: 100%;
+    min-height: 204px;
+  }
+  .world-card-picture nx-world-scene {
+    width: 360%;
+    left: -260%;
+  }
+  .world-card-copy {
+    padding: 22px 17px;
+  }
+  .world-card h2 {
+    font-size: 22px;
+    min-height: 0;
+    margin: 18px 0 19px;
+  }
+  .world-card-meta {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .world-tag {
+    font-size: 6px;
+  }
+  .world-number {
+    left: 11px;
+    top: 11px;
+    width: 27px;
+    height: 27px;
+    font-size: 9px;
+  }
+  .world-selected {
+    right: 11px;
+    bottom: 12px;
+    width: 31px;
+    height: 31px;
+  }
+  .selector-grid {
+    grid-template-columns: 1fr;
+  }
+  .experience-preview {
+    min-height: 505px;
+  }
+  .preview-content {
+    padding: 27px 24px 0;
+  }
+  .preview-topline {
+    padding: 22px 24px;
+  }
+  .preview-content h2 {
+    font-size: 32px;
+  }
+  .preview-content p {
+    max-width: 280px;
+  }
+  .preview-nexito {
+    width: 130px;
+  }
+  .preview-caption {
+    font-size: 9px;
+    max-width: 60%;
+  }
+}

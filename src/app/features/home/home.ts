@@ -6,11 +6,15 @@ import { ProfileService } from '../../core/services/profile.service';
 import { PreferenceService } from '../../core/services/preference.service';
 import { ProgressService } from '../../core/services/progress.service';
 import { ActivityCardComponent } from '../../shared/components/activity-card';
-import { IllustrationComponent } from '../../shared/components/illustration';
 import { IconComponent } from '../../shared/components/icon';
 import { MultimediaBackgroundComponent } from '../../shared/components/multimedia-background';
 import { ProgressBarComponent } from '../../shared/components/progress-bar';
 import { MessageComponent } from '../../shared/components/message';
+import { WorldSceneComponent } from '../../shared/components/world-scene';
+import { NexitoComponent } from '../../shared/components/nexito';
+import { MEDIA } from '../../core/constants/media-manifest';
+import { RevealDirective } from '../../shared/directives/reveal';
+import { InteractiveUniverseComponent } from '../../shared/components/interactive-universe';
 
 @Component({
   selector: 'nx-home',
@@ -18,16 +22,20 @@ import { MessageComponent } from '../../shared/components/message';
     RouterLink,
     DecimalPipe,
     ActivityCardComponent,
-    IllustrationComponent,
+    WorldSceneComponent,
+    NexitoComponent,
     IconComponent,
     MultimediaBackgroundComponent,
     ProgressBarComponent,
     MessageComponent,
+    RevealDirective,
+    InteractiveUniverseComponent,
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class HomeComponent {
+  readonly media = MEDIA;
   readonly profiles = inject(ProfileService);
   readonly activities = inject(ActivityService);
   readonly progress = inject(ProgressService);

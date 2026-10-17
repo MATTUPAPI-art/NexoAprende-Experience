@@ -2,6 +2,12 @@
   "name": "nexoaprende-experience",
   "version": "0.1.0",
   "scripts": {
+    "media:prepare": "node scripts/prepare-media.mjs",
+    "media:optimize": "node scripts/optimize-art-media.mjs && node scripts/prepare-custom-art.mjs && node scripts/prepare-media.mjs",
+    "media:art": "node scripts/prepare-custom-art.mjs && node scripts/prepare-media.mjs",
+    "qa:visual": "node scripts/audit-visual.mjs",
+    "prestart": "npm run media:prepare",
+    "prebuild": "npm run media:prepare",
     "ng": "ng",
     "start": "ng serve --host 127.0.0.1 --port 4307",
     "build": "ng build",

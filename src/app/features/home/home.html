@@ -1,71 +1,98 @@
 <div class="welcome-row">
   <div>
-    <span class="eyebrow">{{
-      profiles.configured() ? 'QUÉ BUENO TENERTE AQUÍ' : 'TU PERFIL DE EJEMPLO · BIENVENIDO'
-    }}</span>
-    <h1>
-      ¡Hola, {{ profiles.profile().name }}! <span class="greeting-sun" aria-hidden="true">☀</span>
-    </h1>
-    <p>Hoy es un buen día para descubrir algo nuevo.</p>
+    <span class="eyebrow">TU CURIOSIDAD TIENE UN LUGAR AQUÍ</span>
+    <h1>¡Hola, {{ profiles.profile().name }}!</h1>
+    <p>Un nuevo día. Un montón de cosas por descubrir.</p>
   </div>
   <a class="experience-chip" routerLink="/experiencia"
     ><span class="chip-dot"></span>{{ profiles.stageLabel()
     }}<span class="chip-age">{{ profiles.profile().age }} años</span><nx-icon name="settings"
   /></a>
 </div>
-
 <section
   #hero
   class="hero"
+  [attr.data-world]="profiles.stage()"
   aria-labelledby="hero-title"
   (pointermove)="move($event)"
   (pointerleave)="reset()"
 >
-  <nx-multimedia-background />
+  <nx-world-scene [stage]="profiles.stage()" [eager]="true" />
   <div class="hero-copy">
-    <span class="hero-tag"><span></span>UN UNIVERSO DE POSIBILIDADES</span>
-    <h2 id="hero-title">Pequeños pasos.<br />Grandes <span>descubrimientos.</span></h2>
+    <span class="hero-tag"
+      ><span></span
+      >{{
+        profiles.stage() === 'child'
+          ? 'EL MUNDO DE LAS GRANDES AVENTURAS'
+          : profiles.stage() === 'teen'
+            ? 'TU ESTUDIO DE NUEVAS CONEXIONES'
+            : 'BIENVENIDO AL LABORATORIO CREATIVO'
+      }}</span
+    >
+    <h2 id="hero-title">
+      {{
+        profiles.stage() === 'child'
+          ? 'Hoy puede empezar'
+          : profiles.stage() === 'teen'
+            ? 'Buenas ideas.'
+            : 'Una pequeña idea.'
+      }}<br /><span>{{
+        profiles.stage() === 'child'
+          ? 'una gran aventura.'
+          : profiles.stage() === 'teen'
+            ? 'Nuevas conexiones.'
+            : 'Infinitas posibilidades.'
+      }}</span>
+    </h2>
     <p>
       {{
         profiles.stage() === 'child'
-          ? '¡Juega, imagina y descubre! Tu próxima aventura empieza con una sonrisa.'
+          ? 'Busca, juega e imagina con Nexito. Hay un mundo lleno de sorpresas esperando por ti.'
           : profiles.stage() === 'teen'
-            ? 'Desarrolla tus habilidades, explora nuevos retos y avanza con confianza. A tu ritmo.'
-            : 'Explora, juega y fortalece tus habilidades con experiencias hechas para tu manera de aprender.'
+            ? 'Pon a prueba tu atención, conecta lo que recuerdas y explora nuevas ideas. Con autonomía y a tu ritmo.'
+            : 'Prueba, conecta y sorpréndete. Con Nexito, cada descubrimiento abre la puerta a algo nuevo.'
       }}
     </p>
     <div class="hero-actions">
-      <a routerLink="/actividades" class="button button-cream"
-        >Explorar experiencias<nx-icon name="arrow" /></a
+      <a routerLink="/actividades" class="button button-primary"
+        >Comenzar aventura<nx-icon name="arrow" /></a
       ><a routerLink="/experiencia" class="hero-secondary"
         >Elegir mi edad<nx-icon name="chevron"
       /></a>
     </div>
-    <span class="hero-footnote"
-      ><nx-icon name="heart" />Aquí, cada forma de aprender tiene su lugar.</span
-    >
+    <a class="hero-footnote" href="#universo"
+      ><nx-icon name="sparkles" />Prueba tu universo: arrastra y lanza<nx-icon name="chevron"
+    /></a>
   </div>
-  <div class="hero-visual">
-    <nx-illustration scene="hero" /><span class="floating-note"
-      ><span>✦</span> Tu curiosidad te lleva lejos</span
-    >
+  <div class="hero-media">
+    <nx-multimedia-background
+      [videoSrc]="media.cover"
+      [poster]="media.stages[profiles.stage()]"
+      [priority]="true"
+    /><span class="media-window-label">UNA VENTANA AL MUNDO REAL</span>
+  </div>
+  <div class="hero-friend">
+    <span class="friend-bubble">¡Soy Nexito!<small>¿Qué descubrimos hoy?</small></span
+    ><nx-nexito [interactive]="true" mood="greet" />
   </div>
 </section>
-
+<nx-interactive-universe id="universo" tabindex="-1" />
 <div class="benefits-strip">
   @for (benefit of benefits; track benefit.icon) {
     <span><nx-icon [name]="benefit.icon" />{{ benefit.label }}</span>
   }
-  <span class="benefits-age">Experiencias de 5 a 18 años</span>
+  <span class="benefits-age">Diseñado para mentes de 5 a 18 años</span>
 </div>
-
-<section class="explore-section" aria-labelledby="activities-title">
+<section nxReveal class="explore-section" aria-labelledby="activities-title">
   <div class="section-heading">
     <div>
-      <span class="eyebrow">CADA AVENTURA, UNA NUEVA HABILIDAD</span>
-      <h2 id="activities-title">¿Qué te gustaría descubrir hoy?</h2>
+      <span class="eyebrow">SIGUE ESA CHISPA</span>
+      <h2 id="activities-title">Tres caminos. Tus descubrimientos.</h2>
+      <p class="section-description">
+        Elige una experiencia y mira hasta dónde llega tu curiosidad.
+      </p>
     </div>
-    <a routerLink="/actividades" class="text-link">Ver actividades<nx-icon name="arrow" /></a>
+    <a routerLink="/actividades" class="text-link">Explorar experiencias<nx-icon name="arrow" /></a>
   </div>
   <div class="activity-grid">
     @for (activity of activities.activities; track activity.id) {
@@ -73,21 +100,44 @@
     }
   </div>
 </section>
-
-<div class="home-bottom-grid">
+<section nxReveal class="worlds-section" aria-labelledby="worlds-title">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">CRECEMOS CONTIGO</span>
+      <h2 id="worlds-title">Un mundo para cada etapa.</h2>
+    </div>
+    <a routerLink="/experiencia" class="text-link">Encontrar mi mundo<nx-icon name="arrow" /></a>
+  </div>
+  <div class="world-links">
+    <a routerLink="/experiencia" class="world-link world-child"
+      ><nx-world-scene stage="child" /><span
+        ><strong>Pequeñas grandes aventuras</strong><small>Infancia · 5–9 años</small
+        ><nx-icon name="arrow" /></span></a
+    ><a routerLink="/experiencia" class="world-link world-junior"
+      ><nx-world-scene stage="junior" /><span
+        ><strong>El laboratorio creativo</strong><small>Juvenil · 10–13 años</small
+        ><nx-icon name="arrow" /></span></a
+    ><a routerLink="/experiencia" class="world-link world-teen"
+      ><nx-world-scene stage="teen" /><span
+        ><strong>El estudio tecnológico</strong><small>Adolescencia · 14–18 años</small
+        ><nx-icon name="arrow" /></span
+    ></a>
+  </div>
+</section>
+<div nxReveal class="home-bottom-grid">
   <section class="panel progress-teaser" aria-labelledby="progress-title">
     <div class="section-heading compact">
       <div class="inline-heading">
         <span class="round-icon lavender"><nx-icon name="chart" /></span>
-        <h2 id="progress-title">Cada paso cuenta</h2>
+        <h2 id="progress-title">Mira cuánto vas descubriendo.</h2>
       </div>
-      <span class="badge">Tu progreso</span>
+      <span class="badge">Tu recorrido</span>
     </div>
     <p>
       {{
         progress.summary().sessions
-          ? 'Lo estás construyendo, una experiencia a la vez.'
-          : 'Tu historia de aprendizaje está por comenzar.'
+          ? 'Cada experiencia que completas deja una nueva huella.'
+          : 'Tu primera huella puede empezar con una partida.'
       }}
     </p>
     <div class="goal-line">
@@ -96,20 +146,16 @@
     </div>
     <nx-progress-bar [value]="progress.weeklyGoal()" label="Meta semanal de tres sesiones" />
     <div class="progress-teaser-footer">
-      <span
-        ><nx-icon name="star" />{{ progress.summary().sessions }}
-        {{
-          progress.summary().sessions === 1 ? 'aventura completada' : 'aventuras completadas'
-        }}</span
+      <span><nx-icon name="star" />{{ progress.summary().sessions }} aventuras completadas</span
       ><a routerLink="/progreso" class="text-link">Mi progreso<nx-icon name="arrow" /></a>
     </div>
   </section>
   <section class="together-card">
-    <span class="together-art" aria-hidden="true"><nx-icon name="users" /></span>
+    <div class="together-art" aria-hidden="true"><nx-icon name="users" /></div>
     <div>
-      <span class="eyebrow">CRECER ES MEJOR EN COMPAÑÍA</span>
-      <h2>Un equipo para acompañarte.</h2>
-      <p>Familias y profesionales, conectados por lo que más importa: tu aprendizaje.</p>
+      <span class="eyebrow">NADIE EXPLORA EN SOLITARIO</span>
+      <h2>Un equipo para cada aventura.</h2>
+      <p>Familias y profesionales que acompañan, escuchan y ayudan a crecer.</p>
       <div class="together-links">
         <a routerLink="/tutor">Soy tutor<nx-icon name="arrow" /></a
         ><a routerLink="/profesional">Soy profesional<nx-icon name="arrow" /></a>
@@ -117,6 +163,32 @@
     </div>
   </section>
 </div>
+@if (media.art.welcome) {
+  <section class="nexito-welcome" nxReveal aria-labelledby="welcome-nexito-title">
+    <img
+      [src]="
+        profiles.stage() === 'child' && media.art.coverArt ? media.art.coverArt : media.art.welcome
+      "
+      [alt]="
+        profiles.stage() === 'child'
+          ? 'Un portal de aventuras ilustrado con Nexito'
+          : 'Nexito te recibe en un estudio de aprendizaje al atardecer'
+      "
+      width="960"
+      height="540"
+      loading="lazy"
+      decoding="async"
+    />
+    <div>
+      <span class="eyebrow">TU COMPAÑERO DE DESCUBRIMIENTOS</span>
+      <h2 id="welcome-nexito-title">Hola, soy Nexito.</h2>
+      <p>Las ideas grandes también empiezan con preguntas pequeñas. ¿Probamos algo nuevo?</p>
+      <a routerLink="/actividades" class="text-link"
+        >Encontrar mi próximo reto<nx-icon name="arrow"
+      /></a>
+    </div>
+  </section>
+}
 <nx-message
   >Las actividades y sus resultados son educativos y descriptivos. No realizan diagnósticos médicos
   ni psicológicos.</nx-message

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 const PATHS: Record<string, string> = {
+  moon: 'M21 13a9 9 0 0 1-10-10A9 9 0 1 0 21 13Z',
   home: 'm3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z',
   grid: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z',
   chart: 'M4 3v17h17M8 15v-4M13 15V6M18 15V9',

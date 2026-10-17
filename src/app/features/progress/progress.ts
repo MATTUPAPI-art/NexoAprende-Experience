@@ -10,6 +10,7 @@ import { DurationPipe } from '../../shared/pipes/duration';
 
 @Component({
   selector: 'nx-progress',
+  host: { class: 'progress-page' },
   imports: [
     DatePipe,
     DecimalPipe,

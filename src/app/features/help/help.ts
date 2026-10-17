@@ -59,6 +59,23 @@ import { IconComponent } from '../../shared/components/icon';
       </p>
     </details>
     <details>
+      <summary>¿Cómo cambio entre día y noche?</summary>
+      <p>
+        Usa el botón de sol o luna del encabezado. Tu elección se conserva al navegar y volver a
+        abrir este navegador. Las fotos mantienen sus colores originales.
+      </p>
+    </details>
+    <details>
+      <summary>¿Los lanzamientos cuentan en mi progreso?</summary>
+      <p>
+        El universo es un recreo libre. Arrastra un objeto y suéltalo para sumar un lanzamiento; un
+        clic no suma. Con teclado, mueve el objeto con las flechas y lánzalo con Enter o Espacio.
+        Escape cancela el movimiento con teclado. Puedes pausar el universo y reiniciar el contador.
+        Los lanzamientos se reinician al salir del inicio y nunca se guardan como resultados
+        educativos.
+      </p>
+    </details>
+    <details>
       <summary>¿Las actividades sirven para hacer diagnósticos?</summary>
       <p>
         No. Son experiencias educativas para practicar atención, memoria y comprensión lectora. Sus

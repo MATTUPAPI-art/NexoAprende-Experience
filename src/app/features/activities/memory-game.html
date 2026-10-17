@@ -7,6 +7,7 @@
 @if (phase() === 'instructions') {
   <div class="game-intro">
     <div class="intro-illustration">
+      <nx-nexito class="intro-friend" mood="think" />
       <nx-illustration scene="memory" /><span class="intro-caption"
         >Dos imágenes. Una conexión.</span
       >
@@ -83,7 +84,8 @@
           "
           (click)="flip(card.id)"
         >
-          <span class="tile-back" aria-hidden="true"><span>✦</span></span
+          <span class="tile-back" aria-hidden="true"
+            ><span><nx-brand-mark /></span></span
           ><span class="tile-front" aria-hidden="true"
             >{{ card.symbol }}
             @if (card.matched) {
@@ -104,6 +106,24 @@
     <p class="board-caption">
       <nx-icon name="heart" />No hay prisa. Tu memoria crece con cada intento.
     </p>
+    <div class="game-friend">
+      <nx-nexito
+        [mood]="
+          phase() === 'complete' ? 'cheer' : paused() ? 'calm' : state().locked ? 'think' : 'greet'
+        "
+      />
+      <p>
+        {{
+          phase() === 'complete'
+            ? '¡Lo descubriste! Cada intento abrió un nuevo camino.'
+            : paused()
+              ? 'Aquí te espero. Un respiro también cuenta.'
+              : state().locked
+                ? 'Probemos otra conexión. Estoy pensando contigo.'
+                : 'Una imagen, una pista. Sin prisa, seguimos explorando.'
+        }}
+      </p>
+    </div>
   </section>
 }
 <p class="sr-only" aria-live="polite" aria-atomic="true">{{ announcement() }}</p>
@@ -114,6 +134,7 @@
   (cancel)="closeResults()"
 >
   <div class="results-inner">
+    <nx-nexito class="result-friend" mood="cheer" />
     <div class="celebration" aria-hidden="true">
       <span>✦</span><nx-icon name="trophy" /><span>✧</span>
     </div>
